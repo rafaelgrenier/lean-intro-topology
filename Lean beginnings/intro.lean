@@ -1,5 +1,5 @@
 /-
-* Intro To Lean
+# Intro To Lean
 
 What's the difference between a proof and an argument?
 Arguments offer some reason for the reader to believe the truth
@@ -63,7 +63,7 @@ If the current goal in the tactic state is Q and there is a hypothesis 'hPQ : P 
 then the tactic "apply hPQ" would change the goal to ⊢ Q.
 
 If the current goal in the tactic state is P and there is a hypothesis 'hP : P',
-then the tactic "apply hP" would complete the goal. When no goals are left,
+then the tactic "exact hP" would complete the goal. When no goals are left,
 the proof is complete.
 -/
 

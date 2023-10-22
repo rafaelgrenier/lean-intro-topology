@@ -1,5 +1,5 @@
 /-
-* Not
+# Not, And, and Or
 
 Now that we have some basics for propositions, let's explore other ways to create new
 propositions. The connective "not" (written ¬) is encoded in lean like so:
