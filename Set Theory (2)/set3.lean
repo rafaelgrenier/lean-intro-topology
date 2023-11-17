@@ -34,5 +34,9 @@ example {p : α} {q : β} : (p, q) ∈ S ×ˢ U ↔ (q, p) ∈ U ×ˢ S := by
 
 -- Cartesian Products get more interesting when we consider the product of not just two set,
 -- but a whole family of sets!
--- "I" is
-variable (I : Type) (A B : I → Set α)
+-- "I" is an index set, so A and B are functions which map elements in I to sets of α
+--variable (I : Type) (A B : I → Set α)
+
+/-
+# TODO: sUnion, Structures, Typeclasses
+-/
