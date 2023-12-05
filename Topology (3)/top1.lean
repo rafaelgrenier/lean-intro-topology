@@ -1,3 +1,8 @@
+import Mathlib.Data.Set.Basic
+import Mathlib.Topology.Basic
+open TopologicalSpace
+open Set
+namespace BasisYieldsTopology
 /-
 # Topology in LEAN
 For some space X, a topology T is a collection of sets of elements from X satisfying the following:
@@ -6,37 +11,123 @@ For some space X, a topology T is a collection of sets of elements from X satisf
 · The union of arbitrarily many sets in T is also in T, and
 · The intersection of any two sets in T is also in T.
 The sets included in the topology are called "open" sets, and their complements are "closed."
+-/
+class TopologicalSpace (α : Type u) where
+  IsOpen : Set α → Prop
+  IsOpenUniv : IsOpen Set.univ
+  IsOpenInter : ∀ s t, IsOpen s → IsOpen t → IsOpen (s ∩ t)
+  IsOpenSetUnion : ∀ s, (∀ t ∈ s, IsOpen t) → IsOpen (⋃₀ s) -- ∅ ∈ T follows from s = ∅
 
+def IsOpen [TopologicalSpace α] : Set α → Prop := TopologicalSpace.IsOpen
+
+variable {X : Type} [TopologicalSpace X]
+/-!
+### Interior of a set
+
+One of the most frequent ways to prove a set S is open is to show that all
+points in that set are 'interior points,' meaning there is an open set Uₓ contained
+in S and containing x for each point x in S.
+
+Here we put in a little bit of work to prove that a set is open iff it equals
+its interior. (The following theorems are slightly modified from Mathlib)
+-/
+-- The interior of a set `S` is the the union of all open subsets of `S`.
+def interior (S : Set X) : Set X :=
+  ⋃₀ { U | IsOpen U ∧ U ⊆ S }
+
+theorem mem_interior {S : Set X} {x : X} : x ∈ interior S ↔ ∃ U, U ⊆ S ∧ IsOpen U ∧ x ∈ U := by
+  simp [interior, and_comm, ←and_assoc]
+
+theorem isOpen_interior {S : Set X} : IsOpen (interior S) := by
+  apply TopologicalSpace.IsOpenSetUnion
+  intro _
+  exact And.left
+
+theorem interior_subset {S : Set X} : interior S ⊆ S := by
+  apply sUnion_subset
+  intro _
+  exact And.right
+
+theorem interior_maximal {S U : Set X} (h₁ : U ⊆ S) (h₂ : IsOpen U) : U ⊆ interior S := by
+  exact subset_sUnion_of_mem ⟨h₂, h₁⟩
+
+theorem IsOpen.interior_eq {S : Set X} (h : IsOpen S) : interior S = S := by
+  apply interior_subset.antisymm
+  apply interior_maximal (Subset.refl S) h
+
+theorem interior_eq_iff_isOpen {S : Set X} : interior S = S ↔ IsOpen S := by
+  constructor
+  · intro h
+    rw [←h]
+    apply isOpen_interior
+  · exact IsOpen.interior_eq
+
+/-
 Specifying a particular topology is cumbersome to do directly from the above definition, so instead
 there are a handful of other means to describe a topology on a space. In this section, we will
 discuss two: Bases and Filters.
 
--/
-import Mathlib.Data.Set.Basic
-import Mathlib.Topology.Basic
-open TopologicalSpace
-#check TopologicalSpace
-#check IsOpen
-#check isOpen_univ
-#check IsOpen.inter
-#check isOpen_sUnion
-
-/-
 A basis B for a topology is a collection of sets such that
-· B covers the entire space, i.e. ⋃₀ B = univ , and
-· ∀ S₁ ∈ B, ∀ S₂ ∈ B, ∀ x ∈ S₁ ∩ S₂, ∃ S₃ ∈ B, x ∈ S₃ ∧ S₃ ∈ S₁ ∩ S₂.
-  (for any pair of sets in B, there are sets in B which lie within the intersection and cover it)
+B covers the entire space and covers the intersection of any two sets in B.
+(for any pair of sets in B, there are sets in B which lie within the intersection and cover it)
 This notion of a basis yields a topology T whose open sets are all possible unions of basis sets.
 You may check for yourself that the properties of a basis guarantee that T will be a topology.
 -/
-namespace BasisYieldsTopology
-variable {X : Type} (B : Set (Set X)) (Bcover : ⋃₀ B = Set.univ)
-variable (Bcover_inter: ∀ S₁ ∈ B, ∀ S₂ ∈ B, ∀ x ∈ S₁ ∩ S₂, ∃ S₃ ∈ B, x ∈ S₃ ∧ S₃ ⊆ S₁ ∩ S₂)
-variable (T : Set (Set X)) (hT : ∀ S : Set X, S ∈ T ↔ ∃ C : Set (Set X), C ⊆ B ∧ S = ⋃₀ C)
+structure Basis (α : Type u) where
+  Carrier : Set (Set α) --The sets which comprise the basis
+  Basis_Cover : ⋃₀ Carrier = Set.univ --The basis covers the entire space
+  Basis_Cover_Inter {B₁ B₂ : Set α}: --The basis covers intersections of basis sets
+    B₁ ∈ Carrier → B₂ ∈ Carrier → ∀ x ∈ B₁ ∩ B₂, ∃ B₃ ∈ Carrier, x ∈ B₃ ∧ B₃ ⊆ B₁ ∩ B₂
+-- Here's a little bit of code for convenience: now we can write B₁ ∈ B rather than B₁ ∈ B.Carrier
+instance {α : Type*} : Membership (Set α) (Basis α) := ⟨fun U B => U ∈ B.Carrier⟩
 
-example : Set.univ ∈ T := by sorry
+-- Now to prove that a basis specifies a topology!
+instance (B : Basis X) : TopologicalSpace X := {
+  IsOpen := λ S ↦ ∃ C : Set (Set X), C ⊆ B.Carrier ∧ S = ⋃₀ C,
+  IsOpenUniv := by
+    sorry
 
-example : ∀ S₁ S₂ : Set X, S₁ ∈ T → S₂ ∈ T → S₁ ∩ S₂ ∈ T := by sorry
+  IsOpenInter := by
+    intro U V UT VT
+    let ⟨C₁, hC₁, UC₁⟩ := UT
+    let ⟨C₂, hC₂, VC₂⟩ := VT
+    have h : ∀ x ∈ U ∩ V, ∃ B₃ ∈ B, B₃ ⊆ U ∩ V ∧ x ∈ B₃ := by
+      rintro x ⟨xU, xV⟩
+      rw [UC₁] at xU
+      rw [VC₂] at xV
+      let ⟨B₁, B₁C₁, xB₁⟩ := xU
+      let ⟨B₂, B₂C₂, xB₂⟩ := xV
+      clear xU xV UT VT
+      let ⟨B₃, B₃B, xB₃, B₃inter⟩ := B.Basis_Cover_Inter (hC₁ B₁C₁) (hC₂ B₂C₂) x ⟨xB₁, xB₂⟩
+      exists B₃
+      sorry
+    choose! f hf₁ hf₂ hf₃ using h
+    exists {S | ∃ x ∈ U ∩ V, S = f x}
+    constructor
+    · sorry
+    · sorry
 
-example : ∀ C : Set (Set X), C ⊆ T → (⋃₀ C) ∈ T := by sorry
+
+  IsOpenSetUnion := by
+    intro C hC
+    choose! f hf₁ hf₂ using hC
+    exists (⋃₀ {C' | ∃ S ∈ C, C' = f S})
+    simp
+    constructor
+    · intro C' S SC C'fS
+      rw [C'fS]
+      exact hf₁ S SC
+    · ext x
+      constructor
+      · rintro ⟨S, hS, xS⟩
+        simp
+        rw [hf₂ S hS] at xS
+        let ⟨U, UfS, xU⟩ := xS
+        exists U
+        refine ⟨?_, xU⟩
+        exists f S
+        refine ⟨(by exists S), UfS⟩
+      · sorry
+}
+
 end BasisYieldsTopology
