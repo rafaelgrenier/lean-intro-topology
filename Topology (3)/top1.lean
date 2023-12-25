@@ -20,47 +20,6 @@ class TopologicalSpace (α : Type u) where
 
 def IsOpen [TopologicalSpace α] : Set α → Prop := TopologicalSpace.IsOpen
 
-variable {X : Type} [TopologicalSpace X]
-/-!
-### Interior of a set
-
-One of the most frequent ways to prove a set S is open is to show that all
-points in that set are 'interior points,' meaning there is an open set Uₓ contained
-in S and containing x for each point x in S.
-
-Here we put in a little bit of work to prove that a set is open iff it equals
-its interior. (The following theorems are slightly modified from Mathlib)
--/
--- The interior of a set `S` is the the union of all open subsets of `S`.
-def interior (S : Set X) : Set X :=
-  ⋃₀ { U | IsOpen U ∧ U ⊆ S }
-
-theorem mem_interior {S : Set X} {x : X} : x ∈ interior S ↔ ∃ U, U ⊆ S ∧ IsOpen U ∧ x ∈ U := by
-  simp [interior, and_comm, ←and_assoc]
-
-theorem isOpen_interior {S : Set X} : IsOpen (interior S) := by
-  apply TopologicalSpace.IsOpenSetUnion
-  intro _
-  exact And.left
-
-theorem interior_subset {S : Set X} : interior S ⊆ S := by
-  apply sUnion_subset
-  intro _
-  exact And.right
-
-theorem interior_maximal {S U : Set X} (h₁ : U ⊆ S) (h₂ : IsOpen U) : U ⊆ interior S := by
-  exact subset_sUnion_of_mem ⟨h₂, h₁⟩
-
-theorem IsOpen.interior_eq {S : Set X} (h : IsOpen S) : interior S = S := by
-  apply interior_subset.antisymm
-  apply interior_maximal (Subset.refl S) h
-
-theorem interior_eq_iff_isOpen {S : Set X} : interior S = S ↔ IsOpen S := by
-  constructor
-  · intro h
-    rw [←h]
-    apply isOpen_interior
-  · exact IsOpen.interior_eq
 
 /-
 Specifying a particular topology is cumbersome to do directly from the above definition, so instead
@@ -80,6 +39,7 @@ structure Basis (α : Type u) where
     B₁ ∈ Carrier → B₂ ∈ Carrier → ∀ x ∈ B₁ ∩ B₂, ∃ B₃ ∈ Carrier, x ∈ B₃ ∧ B₃ ⊆ B₁ ∩ B₂
 -- Here's a little bit of code for convenience: now we can write B₁ ∈ B rather than B₁ ∈ B.Carrier
 instance {α : Type*} : Membership (Set α) (Basis α) := ⟨fun U B => U ∈ B.Carrier⟩
+variable {X : Type} [TopologicalSpace X]
 
 -- Now to prove that a basis specifies a topology!
 instance (B : Basis X) : TopologicalSpace X := {
@@ -106,7 +66,6 @@ instance (B : Basis X) : TopologicalSpace X := {
     constructor
     · sorry
     · sorry
-
 
   IsOpenSetUnion := by
     intro C hC
