@@ -1,42 +1,42 @@
 /-
-# Cartesian Products
+# Arbitrary Unions and Intersections
 
-Cartesian Products allow for a new way to create new sets. For sets (S : set α) and (T : set β),
-the new set S ⨯ˢ T is of type set (α × β) such that for each p ∈ S and q ∈ T,
-the pair (p, q) is in S ×ˢ T.
+How does one intersect some arbitrary number of sets? Or take the union of
+infinitely many sets? There are two ways: indexed sets, and sets of sets
+
 -/
 import Mathlib.Data.Set.Basic
-import Mathlib.Data.Set.Prod
-variable (α β : Type)
-variable (S T : Set α) (U V : Set β)
+import Mathlib.Data.Set.Lattice
+import Mathlib.Data.Set.Function
+import Mathlib.Data.Nat.Interval
+namespace UnionInter
 open Set
 
--- here are a few examples of proofs involving Cartesian Products
-example {p : α} {q : β} (hp : p ∈ S) (hq : q ∈ U) : (p, q) ∈ S ×ˢ U := by
-  rw [mem_prod_eq]
-  dsimp
-  constructor
-  · exact hp
-  · exact hq
+def moreThanN (n : Nat) : Set Nat := {m | n ≤ m}
+-- so moreThanN maps from particular numbers to sets
+def unionAll : Set Nat := ⋃ n : Nat, moreThanN n
+-- unionAll is the union of moreThanN n for each Natural number n
 
-example (hST : S ⊆ T) (hUV : U ⊆ V) : S ×ˢ U ⊆ T ×ˢ V := by
-  intro p hp
-  rw [mem_prod_eq] at *
-  constructor
-  · apply hST
-    exact And.left hp
-  · apply hUV
-    exact And.right hp
+example : unionAll = univ := by
+  rw [eq_univ_iff_forall]
+  intro x
+  dsimp [unionAll, moreThanN]
+  rw [mem_iUnion]
+  simp only [mem_setOf_eq]
+  exists x
 
--- You try!
-example {p : α} {q : β} : (p, q) ∈ S ×ˢ U ↔ (q, p) ∈ U ×ˢ S := by
-  sorry
+def interAll : Set Nat := ⋂ n : Nat, moreThanN n
 
--- Cartesian Products get more interesting when we consider the product of not just two set,
--- but a whole family of sets!
--- "I" is an index set, so A and B are functions which map elements in I to sets of α
---variable (I : Type) (A B : I → Set α)
+example : interAll = ∅ := by
+  rw [eq_empty_iff_forall_not_mem]
+  dsimp [interAll, moreThanN]
+  intro x hx
+  rw [mem_iInter] at hx
+  contrapose hx
+  push_neg
+  exists (x+1)
+  simp
 
-/-
-# TODO: sUnion, Structures, Typeclasses
--/
+
+
+end UnionInter
