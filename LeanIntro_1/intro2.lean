@@ -33,7 +33,7 @@ example : (P → Q) → (¬Q → ¬P) := by
 
 /-
 Next up in our introduction to first-order logic are "and" and "or."
-Your intuition for these logical connectives gets you most of the way already, 
+Your intuition for these logical connectives gets you most of the way already,
 but the introduction and elimination rules may run contrary to your expectations.
 
 "And" is expressed as ∧ in Lean, and comes with the following intro and elim rules:
@@ -107,8 +107,13 @@ example : (¬P ∨ Q) → (P → Q) := by
 The following exercises are left to you. More practice problems are available in both
 Mathematics in Lean and Theorem Proving in Lean. These two textbooks are accessible
 in the VSCode editor by typing ctrl-shift-p and selecting "Open Documentation View."
--/ 
+-/
 
 example : ¬(P ∨ Q) → (¬P ∧ ¬Q) := by
   sorry
 
+example : ¬(P → Q) → (¬Q) := by
+  sorry
+
+example : (P → Q) → ¬P → ((P → Q) → Q) → Q := by
+  sorry

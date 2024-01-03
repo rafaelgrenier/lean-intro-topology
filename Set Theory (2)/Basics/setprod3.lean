@@ -7,8 +7,8 @@ the pair (p, q) is in S ×ˢ T.
 -/
 import Mathlib.Data.Set.Basic
 import Mathlib.Data.Set.Prod
-variable (α β : Type)
-variable (S T : Set α) (U V : Set β)
+variable {α β : Type}
+variable {A S T : Set α} {B U V : Set β}
 open Set
 
 -- here are a few examples of proofs involving Cartesian Products
@@ -32,11 +32,12 @@ example (hST : S ⊆ T) (hUV : U ⊆ V) : S ×ˢ U ⊆ T ×ˢ V := by
 example {p : α} {q : β} : (p, q) ∈ S ×ˢ U ↔ (q, p) ∈ U ×ˢ S := by
   sorry
 
--- Cartesian Products get more interesting when we consider the product of not just two set,
+
+-- Cartesian Products get more interesting when we consider the product of not just two sets,
 -- but a whole family of sets!
 -- "I" is an index set, so A and B are functions which map elements in I to sets of α
 --variable (I : Type) (A B : I → Set α)
 
 /-
-# TODO: sUnion, Quotient, Structures, Typeclasses
+# TODO: Structures, Typeclasses
 -/
