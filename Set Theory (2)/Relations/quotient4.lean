@@ -22,13 +22,6 @@ def QType (X : Type) (inst : Setoid X) := Quotient inst
 
 -- Now that you have the basics, let's look a worked example: ℤ₅
 namespace QuotientExample
-/-
-    .lift
-    .exists_rep
-  ℤ mod 5 as an example
--/
-
-
 
 def eqv (a b : ℤ) : Prop := ∃ k, a-b = 5*k --defining a relation
 theorem iseqv : Equivalence eqv where --proving it's an equivalence
