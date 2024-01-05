@@ -63,7 +63,7 @@ def four := mod5ify 4
 def Zmod5univ : Set Zmod5 := {zero, one, two, three, four}
 
 /-
-Once elements of the Quotient type exist, how can they be related to each other?
+Once elements of the Quotient type exist , how can they be related to each other?
 Quotient.eq is a theorem stating that for some {X : Type}, [s : Setoid X], and {a b : X},
 then `(Quotient.mk s a = Quotient.mk s b ↔ a ≈ b)`. Both directions of the Iff are also
 named theorems, where `exact` is implication to the left and `sound` to the right.
@@ -144,5 +144,92 @@ example : ¬hasSqrtMod5 (two) := by
   clear hn s
   sorry -- at this point the proof is entirely free of quotients and amounts to
         -- showing that `n*n - 2 = 5*k` has no solutions over the integers.
+
+
+lemma Zmod5univ_legit : ∀ p : Zmod5, p ∈ Zmod5univ := by
+  intro p
+  simp only [Zmod5univ, zero, mod5ify, one, two, three, four, Set.mem_insert_iff, Set.mem_singleton_iff]
+  rcases (Quotient.exists_rep p) with ⟨n, hn⟩
+  rw [←hn, Quotient.eq, Quotient.eq, Quotient.eq, Quotient.eq, Quotient.eq]
+  clear p hn
+  simp [eqv_def]
+  sorry -- This sorry can be resolved with induction
+
+def square_range : Set Zmod5 := squareMod5 '' Zmod5univ
+
+theorem square_range_def : square_range = {zero, one, four} := by
+  ext p
+  constructor
+  · intro ⟨q, qZmod5, hq⟩
+    simp [Zmod5univ] at qZmod5
+    simp only [Set.mem_singleton_iff, Set.mem_insert_iff]
+    rcases qZmod5 with (q0 | q1 | q2 | q3 | q4)
+    · apply Or.inl
+      rw [←hq, q0]
+      dsimp [squareMod5, zero, mod5ify, square]
+      simp only [mul_zero]
+    · apply Or.inr; apply Or.inl
+      rw [←hq, q1]
+      dsimp [squareMod5, one, mod5ify, square]
+      simp only [mul_one]
+    · sorry
+    · sorry
+    · sorry
+  · simp only [square_range, Set.image, Zmod5univ, Set.mem_singleton_iff, Set.mem_insert_iff]
+    rintro (p0 | p1 | p4)
+    · exists zero
+      simp only [true_or, true_and]
+      rw [p0]
+      rfl
+    · exists one
+      simp only [true_or, or_true, true_and]
+      rw [p1]
+      rfl
+    · exists two
+      simp only [true_or, or_true, true_and]
+      rw [p4]
+      rfl
+
+lemma name : ¬hasSqrtMod5 (two) := by
+  dsimp [hasSqrtMod5, two, mod5ify]
+  push_neg
+  intro p
+  let q := squareMod5 p
+  have hq : q = squareMod5 p := rfl
+  rw [←hq]
+  have : q ∈ square_range := by
+    exists p
+    constructor
+    apply Zmod5univ_legit
+    rw [hq]
+  intro h
+  rw [h] at this
+  have : two ∈ square_range := by
+    exact this
+  contrapose this
+  rw [square_range_def]
+  simp only [Set.mem_singleton_iff, Set.mem_insert_iff]
+  push_neg
+  dsimp [zero, one, two, four, mod5ify]
+  rw [Quotient.eq, Quotient.eq, Quotient.eq]
+  simp [eqv_def]
+  constructor
+  · intro n
+    sorry
+  constructor
+  · intro n
+    sorry
+  · intro n
+    sorry
+
+example : ∀ n k : ℤ, n * n - 2 ≠ 5 * k := by
+  let claim := name
+  dsimp [hasSqrtMod5, two, mod5ify] at claim
+  push_neg at claim
+  dsimp [squareMod5] at claim
+  intro n
+  let aux := claim (mod5ify n)
+  simp [mod5ify, square, eqv_def] at aux
+  exact aux
 
 end QuotientExample

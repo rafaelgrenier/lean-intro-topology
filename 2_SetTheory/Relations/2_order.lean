@@ -6,10 +6,15 @@ import Mathlib.Algebra.Ring.Basic
 /-
 # Order Relation
 
-Formally, a relation on a type α is implemented in Lean as a function with type
-α → α → Prop, and this is equivalent to the set theoretic construction of some
-subset of α × α. (α → α → Prop is equiv to α × α → Prop)
+There are many types of order relations: preorders, partial orders, strict orders,
+total orders, linear orders, etc.
 -/
+#print IsStrictOrder
+#print Preorder
+#print PartialOrder
+#print LinearOrder
+
+
 namespace Order
 -- A strict order relation just needs to be transitive and irreflexive, defined here
 def trans_rel {X : Type} (r : X → X → Prop) := ∀ x y z : X, r x y → r y z → r x z
