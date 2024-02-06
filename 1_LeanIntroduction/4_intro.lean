@@ -1,64 +1,47 @@
+import Mathlib.Data.Nat.Basic
+import Mathlib.Data.Int.Basic
+import Mathlib.Data.Rat.Basic
+import Mathlib.Data.Real.Basic
 /-
-# Logical Quantifiers, ∃ and ∀
--- MIL has an excellent introduction to these quantifier in its 3rd chapter.
 
-To introduce these quantifiers, first we need to briefly discuss types.
+# Natural and Real Numbers
 
-In Lean, every expression has some type. In the previous examples, P, Q, R,
-True, and False had the type Prop. Lean has some built-in types like Nat for the
-Natural numbers and Real (ℝ) for the Real numbers. 
+The natural numbers are 0, 1, 2, and so on, continuing forever. In Lean, the
+natural numbers are defined as a type called `Nat` or `ℕ`, which is defined recusively
 
-The quantifier ∃ means 'there exists,' so an expression like 
-∃ x : ℝ, x = 0 means that 'there exists an x with type ℝ such that x = 0.'
-The quantifier ∀ means 'for all' or 'for every,' so an expression like
-∀ n : Nat, n ≥ 0 means 'for all n with type Nat, n is at least 0.' 
+For every term of type `ℕ`, the term is either `Nat.zero` (representing 0),
+or `Nat.succ n` for some other `n : ℕ` (representing n+1). Thus `3` unfolds
+to be defined as `Nat.succ (Nat.succ (Nat.succ Nat.zero))`.
 
-The Universal Quantifier ∀ functions like an implication, so the statement
-'∀ n : Nat, n ≥ 0' can be thought of 'n being of type Nat' → n ≥ 0. Thus the 
-intro tactic can be used as the introduction rule for a ∀ statement, and the 
-elimination rule is the same as for →, which is treating the ∀ statement as 
-a function. This is best illustrated as an example: -/   
+The natural numbers have the defined binary operations of addition and multiplication,
+plus modified versions of subtraction (a - b = 0 if a < b) and division (a / b = c,
+where c is the largest natural number satisfying b*c ≤ a, or b = c = 0).
 
-example : ∀ n : Nat, n ≥ 0 := by
-  intro v
-  -- now I have 'v' as an arbitrary Nat object in my proof and my goal is '⊢ v ≥ 0'
-  apply Nat.zero_le -- this is a theorem stating all Nat's are at least 0
+Subtraction can be made a true inverse of addition by extending the natural
+numbers to the integers, denoted `ℤ` or `Int` in Lean. Division can also
+be made a true inverse to multiplication by extending the integers to the
+rational numbers, denoted `Rat` or `ℚ` in Lean.
 
--- another example
+The real numbers, denoted `Real` or `ℝ` in Lean, complete the rationals.
 
-example : ∀ P : Prop, ¬(P ∧ ¬P) := by
-  intro P
-  intro hP
-  apply hP.right
-  exact hP.left
-
-example (h : ∀ n : Nat, n ≤ n + 1) : 0 ≤ 1 := by -- here we will use a ∀ statement
-  let aux := h 0 -- the 'let' tactic introduces new hypotheses with explicit names
-  -- now 'aux' is the hypothesis that 0 ≤ 0 + 1
-  -- Lean is smart enough to figure out that 0 + 1 is equivalent to 1, so we have 
-  -- our conclusion already!
-  exact aux
-
-/-
-The Existential Quantifier ∃ can be thought of as a pair, both the object
-which is claimed to exists and the property hypothesized to that object.
-So '∃ x : ℝ, x = 0' is the claim that there is some x with type ℝ, and that
-x has the property that x = 0. Thus the introduction rule for Exists is
-Exists.intro {α : Type} {p : α → Prop} (w : α) (h : p w) : (∃ x : α, p x).
-  - Here {p : α → Prop} means that p is something called a "predicate," which
-    is a function which takes some object of a given type to a Proposition. One 
-    example of a predicate might be "is_positive" on the type ℝ, since expressions
-    of type ℝ are either positive or not, so we would expect
-    is_positive 5 to evaluate as True and is_positive -12 to evaluate as False.
-Now that we know how to prove an existential claim, let's discuss what to do with
-such a claim as a hypothesis. The elimination rule for Exists is
-Exists.elim {α : Type} {p : α → Prop} (h₁ : ∃ x : α, p x) (h₂ : ∀ (a : α), p a → b) : b.
-In other words, if you have a proof that some x : α satisfies p x and a proof that
-any x satisfying p x implies b, then b is implied.
+All of these familiar sets of numbers are instead Types in Lean.
 -/
-#check Exists.intro
-#check Exists.elim
 
-example : ∃ n : Nat, n = (0 : Nat) := by
-  apply Exists.intro 0
-  rfl
+#check 4
+#check (4 : ℤ)
+#eval 9 + 10
+#eval 16 * 5
+#eval 7 - 13 -- Subtraction is defined on ℕ so that negative numbers are avoided
+#eval 22 / 7 -- The same goes for division
+#eval (7 : ℤ) - 13 -- Now that Lean knows 7 is meant to be an Integer, Lean assumes integer subtraction
+#eval 22 / (7 : ℚ)
+
+#check lt_trans
+#check le_trans
+#check lt_of_lt_of_le
+#check lt_of_le_of_lt
+
+example {a b c d : ℝ} (aleb : a ≤ b) (bltc : b < c) (cled : c ≤ d) : a < d := by
+  apply lt_of_le_of_lt aleb
+  apply lt_of_lt_of_le bltc
+  exact cled

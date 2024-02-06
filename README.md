@@ -19,9 +19,13 @@ cd lean-intro-topology
 ```shell
 lake exe cache get
 ```
+And if you already have VSCode downloaded, type the following command to immediately 
+start working on the project:
 ```shell
 code .
 ```
 
 ## Terminal
-Install GIT Bash
+For Windows Users, you can install Git [here](https://gitforwindows.org/), and then use
+the Git BASH terminal.
+For Mac Users, the Terminal app exists.

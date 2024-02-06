@@ -32,6 +32,8 @@ example (hST : S ⊆ T) (hUV : U ⊆ V) : S ×ˢ U ⊆ T ×ˢ V := by
 example {p : α} {q : β} : (p, q) ∈ S ×ˢ U ↔ (q, p) ∈ U ×ˢ S := by
   sorry
 
+example : (S ∩ T) ×ˢ (U ∩ V) = (S ×ˢ U) ∩ (T ×ˢ V) := by
+  sorry
 
 -- Cartesian Products get more interesting when we consider the product of not just two sets,
 -- but a whole family of sets!

@@ -2,8 +2,8 @@ import Init.Classical
 /-
 # Classical Logic, Iff
 
-We briefly take a foray into the differences between classical logic 
-and constructive logic. All of the logic we've discussed thus far has been 
+We briefly take a foray into the differences between classical logic
+and constructive logic. All of the logic we've discussed thus far has been
 constructive: If you want to prove something to be true, you must
 construct a proof from the axioms and other known hypotheses.
 This approach to logic fails to prove some critical theorems which we
@@ -17,7 +17,7 @@ To leverage classical logic in Lean, we import the package Classical.
 
 open Classical
 #check em -- short for "Excluded Middle"
-
+section
 variable (P Q R : Prop)
 
 example : P ∨ ¬P := by
@@ -34,7 +34,7 @@ example : ¬(¬P) → P := by
     apply False.elim
     apply hnnP
     exact hnP
-  
+
 -- in fact, there's a theorem from Classical for the previous example
 #check byContradiction
 
@@ -72,7 +72,7 @@ example : ¬(P ∧ Q) ↔ (¬P ∨ ¬Q) := by
   apply Iff.intro
   -- proof of ¬(P ∧ Q) → (¬P ∨ ¬Q)
   · intro hnPaQ
-    apply Or.elim (em P) -- using Classical logic to show P or ¬P 
+    apply Or.elim (em P) -- using Classical logic to show P or ¬P
     · intro hP
       apply Or.inr -- choosing to prove ¬Q rather than ¬P to establish ¬P ∨ ¬Q
       intro hQ
@@ -96,8 +96,9 @@ example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by --classical logic isn't necessary 
   apply Iff.intro
   · intro h
     sorry
-  · intro ⟨h₁, h₂⟩ 
+  · intro ⟨h₁, h₂⟩
     sorry
 
 example : (P ↔ Q) ↔ ((P → Q) ∧ (Q → P)) := by
   sorry
+end

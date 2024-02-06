@@ -9,12 +9,15 @@ import Mathlib.Data.Set.Basic
 import Mathlib.Data.Set.Lattice
 import Mathlib.Data.Set.Function
 import Mathlib.Data.Set.Image
-namespace SetPractice --This keyword just marks a local scope, so the following variables
+section SetPractice --This keyword just marks a local scope, so the following variables
                       --are only defined for the following problems
 variable {α I : Type*}
 variable (s t u : Set α)
 variable (A B : I → Set α)
 open Set
+
+#check mem_empty_iff_false
+#check mem_univ
 
 --MIL 4.1 Problem #1
 example : s ∩ (t ∪ u) = s ∩ t ∪ s ∩ u := by
@@ -35,10 +38,15 @@ example : (s ∪ (⋂ i, A i)) = ⋂ i, A i ∪ s := by
 example: (s ∩ ∅ = ∅) ∧ (s ∪ ∅ = s) := by
   sorry
 
+example : ∀ Q : Set α, (Q = ∅ ↔ ¬ ∃ a : α, a ∈ Q) := by
+  sorry
+
+example : sᶜ ∩ tᶜ = (s ∪ t)ᶜ := by
+  sorry
 
 end SetPractice
 
-namespace FuncPractice
+section FuncPractice
 variable {α β : Type*}
 variable (f : α → β)
 variable (s t : Set α)
@@ -52,11 +60,12 @@ example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
 
 example : s ⊆ f ⁻¹' (f '' s) := by
   sorry
-
+end FuncPractice
+open Function
 --MIL 4.2 Problem #22
 theorem Cantor : ∀ f : α → Set α, ¬Surjective f := by
 /-
-This is a proof that no function mapping a set to ites power set can be surjective.
+This is a proof that no function mapping a set to its power set can be surjective.
 The idea behind this proof is to construct a subset of the domain (here denoted S) such that
 no element from the domain can be mapped to that subset. Try proving the last two blocks!
 -/
@@ -67,8 +76,7 @@ no element from the domain can be mapped to that subset. Try proving the last tw
     intro h'
     have : j ∉ f j := by rwa [h] at h'
     contradiction
+  clear surjf
   have h2 : j ∈ S := by {sorry}
   have h3 : j ∉ S := by {sorry}
   contradiction
-
-end FuncPractice
