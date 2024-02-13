@@ -35,11 +35,18 @@ example {p : α} {q : β} : (p, q) ∈ S ×ˢ U ↔ (q, p) ∈ U ×ˢ S := by
 example : (S ∩ T) ×ˢ (U ∩ V) = (S ×ˢ U) ∩ (T ×ˢ V) := by
   sorry
 
--- Cartesian Products get more interesting when we consider the product of not just two sets,
--- but a whole family of sets!
--- "I" is an index set, so A and B are functions which map elements in I to sets of α
---variable (I : Type) (A B : I → Set α)
+def swap_map (X Y : Type) (p : X×Y) : (Y × X) := ⟨p.2, p.1⟩
 
-/-
-# TODO: Structures, Typeclasses
--/
+example : Function.Surjective (swap_map α β) := by
+  rintro ⟨b, a⟩
+  use ⟨a, b⟩
+  rfl
+
+example : Function.Injective (swap_map α β) := by
+  rintro ⟨a₁, b₁⟩ ⟨a₂, b₂⟩ hswap
+  rw [Prod.eq_iff_fst_eq_snd_eq] at hswap
+  dsimp only [swap_map] at hswap
+  rw [hswap.left, hswap.right]
+
+example : (swap_map α β) '' (S ×ˢ U) = (U ×ˢ S) := by
+  sorry
