@@ -1,8 +1,11 @@
 import Mathlib.Data.Real.Basic
 
 /-
+# Equivalence Relations
 
-
+An Equivalence relation is any relation which is reflexive, symmetric, and
+transitive. Typically equivalence relations are denoted with the symbol `~`
+or `≈`.
 -/
 #print Equivalence
 structure Equivalence₁ {α : Type} (r : α → α → Prop) : Prop where
@@ -82,10 +85,9 @@ lemma eqv_class_eq_iff_eqv (a b : ℤ) : eqv_class a = eqv_class b ↔ a ≈ b :
     exact ⟨λ hxa ↦ parity_transitive hxa h,
            λ hxb ↦ parity_transitive hxb (parity_symmetric h)⟩
 
+
 def isPartition {X : Type} (P : Set (Set X)) : Prop :=
   (∀ S ∈ P, ∀ T ∈ P, S ≠ T → Disjoint S T) ∧ (∀ x, ∃ S ∈ P, x ∈ S)
-
-def hasPartition (X : Type) : Prop := ∃ C : Set (Set X), isPartition C
 
 -- CLAIM: Equivalence classes form a partition
 example : isPartition {S | ∃ x, S = eqv_class x} := by
@@ -133,5 +135,30 @@ example : isPartition P → Equivalence (specify P) := λ ⟨Pdisj, Pcover⟩ �
       rfl
     rwa [this]
 }
+
+-- Now we will use some tools learned so far to consider another example
+def rel (p q : ℤ × ℤ) : Prop := p.1*q.2 = p.2*q.1
+
+instance : Setoid (ℤ × ℤ) where
+  r := rel
+  iseqv := {
+    refl := sorry
+    symm := sorry
+    trans := sorry
+  }
+
+lemma eqv_def (p q : ℤ × ℤ) : p ≈ q ↔ p.1 * q.2 = p.2 * q.1 := by
+  dsimp [HasEquiv.Equiv, Setoid.r, rel]
+  rfl
+
+def binary_op : ℤ × ℤ → ℤ × ℤ → ℤ × ℤ := by
+  rintro ⟨a, b⟩ ⟨c, d⟩
+  exact ⟨a*c, b*d⟩
+
+lemma binary_op_respects : ∀ p q r s : ℤ × ℤ, p ≈ q → r ≈ s →
+                           binary_op p r ≈ binary_op q s := by
+  sorry
+
+
 
 end

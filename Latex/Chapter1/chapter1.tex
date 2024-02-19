@@ -1,8 +1,82 @@
 % Activate the following line by filling in the right side. If for example the name of the root file is Main.tex, write
 % "...root = Main.tex" if the chapter file is in the same directory, and "...root = ../Main.tex" if the chapter is in a subdirectory.
 
-!TEX root = Main.tex
+\chapter{Introduction}
 
-\chapter[Short Title]{Full Title}
+Most undergraduate Mathematics programs require students to take 
+a proof-writing course, as proofs insert formal rigor into the 
+study of Mathematics. Still, there’s some degree of uncertainty, 
+since human error is still involved in evaluating the proofs and 
+determining their consistency. [Insert examples of theorems 
+which have been erroneously proven throughout history]. For 
+simpler proofs, the risk of human error is a lesser problem, 
+since a discerning eye can quickly catch holes in a faulty proof. 
+Nonetheless, grading the quality of a slew of proofs is 
+time-consuming, especially when factoring in the time a grader 
+might take to provide feedback for the specific errors in a 
+poorly-written proof. The Lean Theorem prover offers a solution 
+to the first problem, and this project is an effort to simplify 
+the grading process of proofs by integrating Lean in a 
+proof-writing course.
 
-\section{Introduction}
+\section{What is Lean?}
+
+Lean uses dependent type theory and the Curry-Howard isomorphism 
+to build a programming language capable of defining and proving 
+theorems in Mathematics. Although other theorem provers exist, 
+Lean was chosen for this project due to its 
+extensive math library, Mathlib, and its large, active community 
+of users. Lean also has a “tactic mode,” wherein all of the 
+premises and goals of a proof are displayed [insert screenshots] 
+as they develop throughout the proof, and functions called 
+“tactics” can be used to advance through the proofs using 
+automation and type inference. Lean’s large user base and 
+committed development team have also created a variety of 
+supplemental resources for new users to learn Lean and for 
+experienced users to reference, most notable of which is 
+Mathematics In Lean.
+
+\section{Why use Lean?}
+
+\begin{enumerate}
+    \item
+Autograding! Any proof written in Lean which compiles is 
+guaranteed to be correct.
+    \item
+Lean Infoview makes writing and reading proofs easier; the precise 
+state of what is already proven and what remains to be shown is 
+made explicit for every step of the proof.
+    \item 
+Tactics can automate some of the tedious parts of a proof, like 
+unfurling definitions and other procedures which can be done 
+algorithmically.
+    \item
+All of the essential parts of a proof are made explicit; 
+hypotheses which go unused are automatically marked by Lean, 
+and each use of some hypothesis or lemma is tracked by its 
+variable name. 
+\end{enumerate}
+Downsides: 
+\begin{enumerate}
+    \item[$\cdot$]
+Some parts of a proof which might be natural or trivial may be 
+challenging to formalize.
+    \item[$\cdot$]
+Appealing to some well-known lemma requires knowledge 
+of its name in Lean.
+    \item[$\cdot$]
+Lean proofs are not written like human language proofs, 
+and don’t directly develop a student’s capacity to write 
+readable human language proofs.
+    \item[$\cdot$]
+Lean takes some time to learn, time which could instead be used 
+for purely mathematical pursuits.
+    \item[$\cdot$]
+Lean requires some level of tech savviness to access, 
+since it must be downloaded and configured, and either the 
+terminal or a code editor is necessary to write Lean code. 
+\end{enumerate}
+\section{Who else uses Lean?}
+Heather Macbeth
+[Insert information about her course]
+[Insert other examples]

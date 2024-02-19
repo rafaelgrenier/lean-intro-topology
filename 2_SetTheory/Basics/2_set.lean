@@ -47,8 +47,8 @@ example : sᶜ ∩ tᶜ = (s ∪ t)ᶜ := by
 end SetPractice
 
 section FuncPractice
-variable {α β : Type*}
-variable (f : α → β)
+variable {α β γ : Type*}
+variable (f : α → β) (g : β → γ)
 variable (s t : Set α)
 variable (u v : Set β)
 open Set
@@ -60,6 +60,13 @@ example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
 
 example : s ⊆ f ⁻¹' (f '' s) := by
   sorry
+
+example (injf : Injective f) (injg : Injective g) : Injective (g ∘ f) := by
+  sorry
+
+example (surjf : Surjective f) (surjg : Surjective g) : Surjective (g ∘ f) := by
+  sorry
+
 end FuncPractice
 open Function
 --MIL 4.2 Problem #22
