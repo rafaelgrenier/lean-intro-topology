@@ -5,7 +5,10 @@
 \contentsline {chapter}{Development}{vii}{chapter*.3}%
 \contentsline {section}{\numberline {0.4}Summer 2023}{vii}{section.0.4}%
 \contentsline {section}{\numberline {0.5}Fall 2023}{vii}{section.0.5}%
-\contentsline {section}{\numberline {0.6}Spring 2023}{vii}{section.0.6}%
+\contentsline {section}{\numberline {0.6}Spring 2023}{viii}{section.0.6}%
+\contentsline {subsection}{\numberline {0.6.1}Finishing the library}{viii}{subsection.0.6.1}%
+\contentsline {subsection}{\numberline {0.6.2}Insights as a TA}{viii}{subsection.0.6.2}%
+\contentsline {subsection}{\numberline {0.6.3}Honors Thesis development}{viii}{subsection.0.6.3}%
 \contentsline {chapter}{Structure}{ix}{chapter*.4}%
 \contentsline {section}{\numberline {0.7}Introduction to Lean and Logic}{ix}{section.0.7}%
 \contentsline {section}{\numberline {0.8}Set Theory}{ix}{section.0.8}%

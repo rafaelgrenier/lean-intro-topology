@@ -19,8 +19,68 @@ Theorem Proving In Lean. Mathematics In Lean is peppered with
 exercises for the reader, which I dutifully completed. When
 I read through MIL, it was still written for Lean3, and I only 
 covered the sections introducing Lean itself, set theory, and
-topology. 
+topology.
+
+The topology section of Mathematics in Lean was sparse, and took 
+an approach to Topology centered in the notion of filters. 
+\begin{definition}
+    A $\mathbf{Filter}\;F$ is a collection of sets over a space $X$
+    such that \begin{enumerate}
+        \item if $S\in F$ and $\hat{S}$ is a superset of $S$, then
+        $\hat{S}\in F$, and
+        \item for any two sets $S,T\in F$, then  the intersection $S\cap T\in F$.
+    \end{enumerate}
+\end{definition}
+
+% MIL's rough introduction to topology inspired me to create an 
+% alternate educational resource for topology in Lean.
+
+% I took notes on Theorem Proving in Lean
+
+% I read some of Functional Programming
+
+% Revisited MIL which had been updated to Lean4 in August
 
 \section{Fall 2023}
 
+In Late August, I began to work through the Munkres textbook
+"Topological Spaces" with a focus on identifying which parts
+of the textbook were more or less challenging to formalize. 
+Starting in September, I pivoted to working on the first section
+of my instructional repository, Logic in Lean. I spent the first few 
+weeks of september deciding how to structure the introduction to 
+formal logic, which ultimately culminated in the current path
+starting with Propositions, truth and falsity, then leading through
+implication, disjunction, conjunction, negation, and the 2 quantifiers.
+I actually began writing code and comments in late september, and by
+mid-october I had written files explaining proofs, proposition, and
+implication; true, false, introduction rules, and elimination rules;
+negation; conjunction and disjunction; and the existential and 
+universal quantifiers. This was also the time when I began backing 
+my files up on github. The remainder of the semester was spent 
+continuing to flesh out the library, adding a section on set theory
+and a section on Topology.
+
 \section{Spring 2023}
+
+Over the Winter break, it was confirmed by the University of Arizona
+mathematics department that Dr. Cherkis would teach a graduate class
+in the coming spring, Math 529: Proof Writing and Proof Checking with
+a Computer. Furthermore, I was accepted as a Teaching Assistant for
+this class. This class gave me the opportunity to discern how 
+approachable formalization of Mathematics in Lean is in an actual
+classroom environment. During this semester, I also began writing 
+this Honors thesis, and I finished working on the code library
+which introduces students to Lean. 
+
+\subsection{Finishing the library}
+
+\subsection{Insights as a TA}
+
+For the first month and a half of the class, Dr. Cherkis lectured
+in parallel to the structure of Mathematics in Lean 4. I was taken
+aback by the difficulty students had in grasping the "apply" tactic,
+which transforms a tactic state with goal $Q$ to a tactic state
+with goal $P$ by using an implication $P\to Q$.
+
+\subsection{Honors Thesis development}

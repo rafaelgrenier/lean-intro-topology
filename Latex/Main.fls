@@ -190,6 +190,10 @@ OUTPUT Chapter2/chapter2.aux
 INPUT ./Chapter2/chapter2.tex
 INPUT ./Chapter2/chapter2.tex
 INPUT Chapter2/chapter2.tex
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./Chapter3/chapter3.tex
 INPUT ./Chapter3/chapter3.tex
 OUTPUT Chapter3/chapter3.aux
@@ -210,8 +214,10 @@ INPUT ./Main.out
 INPUT ./Main.out
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
