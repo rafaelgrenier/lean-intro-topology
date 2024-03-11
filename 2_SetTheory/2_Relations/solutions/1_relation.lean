@@ -41,33 +41,6 @@ structure refl_and_trans (r : α → α → Prop) : Prop where
   refl : reflexive r
   trans : transitive r
 
--- Let's consider an example
-def sseq : Set α → Set α → Prop := λ S T ↦ S ⊆ T
-
-lemma refl_sseq : reflexive (@sseq α) := by
-  intro S x xS
-  exact xS
-
-/- And here's the typical way to construct a term with the of the structure type
-example : name_of_structure (arg_term1) (arg_term2) where
-  term1 := sorry
-  term2 := sorry
-  .
-  .
-  .
--/
-example : refl_and_trans (@sseq α) := sorry--placing the cursor after `sorry`
--- should prompt VSCode to show a blue lightbulb icon at the beginning of the
--- line. Selecting that icon and choosing "Generate a skeleton ..." will
--- automatically build all the fields of the structure.
-
-example : refl_and_trans (@sseq α) where
-  refl := refl_sseq
-  trans := by
-    intro S T U hST hTU x xS
-    apply hTU
-    apply hST
-    exact xS
 
 def total (r : α → α → Prop) := ∀ x y, r x y ∨ r y x
 
@@ -91,20 +64,37 @@ example : ¬ antisymmetric divides := by
   exists 1
   exists 1
 
-example : ¬ total divides := by
-  sorry
-
 example : transitive divides ∨ ¬ transitive divides := by
-  sorry --prove this without using the excluded middle.
+  apply Or.inl
+  dsimp [transitive, divides]
+  rintro x y z ⟨k, hk⟩ ⟨l, hl⟩
+  exists k * l
+  rw [hl, hk, mul_assoc]
 
--- Try to come up with a relation which is reflexive and symmetric,
--- but not transitive
-def your_relation : ℤ → ℤ → Prop := λ a b ↦ sorry
+-- # There are many solutions, but here's one
+def your_relation : ℤ → ℤ → Prop := λ a b ↦ a = b ∨ a * b = 0
 structure rsnt (r : α → α → Prop) : Prop where
   refl : reflexive r
   symm : symmetric r
   intrans : ¬ transitive r
-example : rsnt your_relation := sorry
+example : rsnt your_relation where
+  refl := by
+    intro x
+    apply Or.inl
+    rfl
+  symm := by
+    intro a b
+    dsimp [your_relation]
+    rintro (h | hab4)
+    · apply Or.inl
+      rw [h]
+    · apply Or.inr
+      rw [mul_comm]
+      exact hab4
+  intrans := by
+    dsimp [transitive, your_relation]
+    push_neg
+    exists -1, 0, 1
 
 end relation_struct
 
@@ -146,7 +136,7 @@ def square {X : Type} [Mul X] (x : X) : X := x * x --bracket [] notation is used
 #eval square 5
 -- Of course, we can overwrite that instance
 instance : Mul Nat where
-  mul := λ a b ↦ a -- Now multiplication on the type Nat just returns the first argument
+  mul := λ a _ ↦ a -- Now multiplication on the type Nat just returns the first argument
 
 #eval Mul.mul 4 7
 #eval 3 * 2

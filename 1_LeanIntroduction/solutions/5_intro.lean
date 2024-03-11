@@ -21,33 +21,27 @@ intro tactic can be used as the introduction rule for a ∀ statement, and the
 elimination rule is the same as for →, which is treating the ∀ statement as
 a function. This is best illustrated as an example: -/
 
-example : ∀ n : Nat, n ≥ 0 := by
-  intro v
-  -- now I have 'v' as an arbitrary Nat object in my proof and my goal is '⊢ v ≥ 0'
-  apply Nat.zero_le -- this is a theorem stating all Nat's are at least 0
 
--- another example
-
-
-
-example : ∀ P : Prop, ¬(P ∧ ¬P) := by
-  intro P
-  intro hP
-  apply hP.right
-  exact hP.left
-
-example (h : ∀ n : Nat, n ≤ n + 1) : 0 ≤ 1 := by -- here we will use a ∀ statement
-  let aux := h 0 -- the 'let' tactic introduces new hypotheses with explicit names
-  -- now 'aux' is the hypothesis that 0 ≤ 0 + 1
-  -- Lean is smart enough to figure out that 0 + 1 is equivalent to 1, so we have
-  -- our conclusion already!
-  exact aux
 
 example: ∀ P Q : Prop, ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
-  sorry
+  intro M G
+  apply Iff.intro
+  · intro h
+    apply And.intro
+    · intro hM
+      apply h
+      apply Or.inl hM
+    · intro hG
+      apply h
+      apply Or.inr hG
+  rintro ⟨hnM, hnG⟩ (hM | hG)
+  · exact hnM hM
+  · exact hnG hG
+
 
 example (Q R : Prop) (h : ∀ P : Prop, P → Q) (hR : R) : Q := by
-  sorry
+  apply h R
+  exact hR
 
 /-
 The Existential Quantifier ∃ can be thought of as a pair, both the object
@@ -82,12 +76,18 @@ example : ¬ ∃ a : Nat, ∀ b : Nat, b < a := by
   apply ha
 
 example : ∀ a : Nat, ∃ b : Nat, a < b := by
-  sorry
+  intro a
+  exists a + 1
+  simp only [lt_add_iff_pos_right]
 
 example (α : Type) (p : α → Prop) : (¬ ∃ a : α, p a) ↔ ∀ a : α, ¬ p a := by
   apply Iff.intro
-  · sorry
-  · sorry
+  · intro h a hpa
+    apply h
+    exists a
+  · intro h ⟨a, ha⟩
+    apply h a
+    exact ha
 
 -- Let's do a proof from Real Analysis!
 
@@ -115,7 +115,15 @@ theorem cont_double {f : ℝ → ℝ} (fcont : continuous f) : continuous (λ x 
   have half_ε_pos : ε / 2 > 0 := half_pos εpos
   let hf := fcont x₀ (ε/2) half_ε_pos
   -- you will need to break down the `∃` in `hf`
-  sorry
+  rcases hf with ⟨d, dpos, hd⟩
+  exists d
+  use dpos
+  intro x hx
+  rw [←mul_sub, abs_mul, abs_two]
+  let claim := hd x hx
+  rw [lt_div_iff, mul_comm] at claim
+  exact claim
+  norm_num
 
 theorem cont_add {f g : ℝ → ℝ} (fcont : continuous f) (gcont : continuous g) :
   continuous (λ x ↦ f x + g x) := by

@@ -56,7 +56,10 @@ example (a b : ℤ) : a ≈ b → (a + b) ≈ 0 := by
   ring_nf
 
 example (a b c d : ℤ) : a ≈ b → c ≈ d → (a + c) ≈ (b + d) := by
-  sorry
+  rintro ⟨k, hk⟩ ⟨l, hl⟩
+  exists k + l
+  rw [mul_add, ←hk, ←hl]
+  ring
 
 -- Now that we have fleshed out the notion of equivalence, let's move on
 -- to one of the main uses: equivalence classes! For any term `a`, the
@@ -135,30 +138,5 @@ example : isPartition P → Equivalence (specify P) := λ ⟨Pdisj, Pcover⟩ �
       rfl
     rwa [this]
 }
-
--- Now we will use some tools learned so far to consider another example
-def rel (p q : ℤ × ℤ) : Prop := p.1*q.2 = p.2*q.1
-
-instance : Setoid (ℤ × ℤ) where
-  r := rel
-  iseqv := {
-    refl := sorry
-    symm := sorry
-    trans := sorry
-  }
-
-lemma eqv_def (p q : ℤ × ℤ) : p ≈ q ↔ p.1 * q.2 = p.2 * q.1 := by
-  dsimp [HasEquiv.Equiv, Setoid.r, rel]
-  rfl
-
-def binary_op : ℤ × ℤ → ℤ × ℤ → ℤ × ℤ := by
-  rintro ⟨a, b⟩ ⟨c, d⟩
-  exact ⟨a*c, b*d⟩
-
-lemma binary_op_respects : ∀ p q r s : ℤ × ℤ, p ≈ q → r ≈ s →
-                           binary_op p r ≈ binary_op q s := by
-  sorry
-
-
 
 end

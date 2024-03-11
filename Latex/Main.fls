@@ -200,6 +200,10 @@ OUTPUT Chapter3/chapter3.aux
 INPUT ./Chapter3/chapter3.tex
 INPUT ./Chapter3/chapter3.tex
 INPUT Chapter3/chapter3.tex
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti8.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT Main.aux
 INPUT ./Chapter1/chapter1.aux
 INPUT ./Chapter1/chapter1.aux
@@ -221,3 +225,4 @@ INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
+INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb

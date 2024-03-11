@@ -7,6 +7,137 @@
 
 \section{Introduction to Lean and Logic}
 
+Conventionally, Propositional Logic is taught with a few basic ideas:
+A proposition is any statement which can be binarily assigned true or 
+false, and every proposition must be either true or false. Next introduced 
+are truth tables, and different means of combining propositions into 
+larger propositions. We define the meaning of conjunction by appealing to 
+a truth table, wherein $P\wedge Q$ is true only if $P$ is true and $Q$ is true.
+Similar constructions define negation, disjunction, and implication. 
+
+In Lean, every term has some Type, and true-or-false claims have the type 
+$\mathit{Prop}$, which is short for Propositions. Any given term $P$ with
+type $Prop$ is itself a type, and a term $hp : P$ is understood to be a 
+proof of the proposition $P$. Therefore any function which produces as its
+output a term of type $P$ is a means by which $P$ can be proven. This gives 
+us a vehicle by which we can conceive of implication! If there is a function
+$f$ which takes as its argument some term $hp$ of type $P$ and returns
+a term of type $Q$, then $f$ is a term with type $P\to Q$. Provided that 
+$P$ and $Q$ are terms with type $Prop$, $f$ can be throught of as a proof
+that $P$ implies $Q$. This means of creating implication as a function from
+one Proposition to another is known as the Curry-Howard Isomorphism, and
+provides the basis for Lean as a proof assistant. 
+
+The above mentioned introductions to logic are very different, so I needed
+to make a choice with my code library: Do I use adapt truth tables into
+Lean and teach basic logic that way, or do I introduce basic logic through
+introduction and elimination rules, as is infitting with how Lean itself 
+is organized? I chose to follow the path tread by the structure of Lean itself,
+especially because actual mathematical proof typically abandons truth tables
+before long. Therefore my code library starts with a brief explanation of
+propositions and proofs, where proofs are functions from one proposition to
+another. I then introduce tactics and tactic states, the other main feature
+of Lean. Tactics make proof-writing in Lean flow more smoothly and resemble 
+proof-writing in Human language more than pure functional code. The tactic
+state also represents to the reader/writer of Lean code the names of all
+hypotheses already known (the function arguments and local variables), as 
+well as all the goals of the proofs (the type which the function should return).
+Each new tactic employed updates the tactic state, so proving a theorem with
+tactics amounts to writing tactics until the tactic state represents that there
+are no goals left to be solved. I equip students with knowledge of just 3 basic
+tactics in the beginning: $intro$, $apply$, and $exact$.
+
+The $intro$ tactic functions similarly to "let" in a human language proof. 
+In some proof about Natural numbers, one might write "let n be a natural number."
+Similarly, in Lean, one would write $intro\;n$.
+If the current goal in the tactic state is in the form 'P → Q', then
+"intro hP" would update the tactic state so that there's a new hypothesis
+hP : P and a simplified goal Q. "hP" is an arbitrary name here, whatever
+sequence of alphanumeric characters follows the whitespace after "intro" will
+be the name assigned to the term introduced. 
+
+The $exact$ tactic is used for finishing off a proof, and might be compared
+to the phrase "Because blank, the proof is complete." If the current goal is
+"P" and there is some hypothesis "hp : P", then writing "exact hp" would 
+complete the proof.
+
+The $apply$ tactic uses implications to change the goal. For example, 
+given the goal 'Q' and the hypothesis "h : P $\to$ Q," writing
+$apply\;h$ would transform the tactic state such that the new goal
+is 'P'. Since it's known that P implies Q, proving P would suffice to 
+prove Q, and the apply tactic packages that logic into a single line.
+
+The code library then works through True, False, Not, And, Or, and Iff.
+True and False are both propositions, where True.intro is a function which
+returns a proof of True and requires no arguments, and False.elim is a function
+which takes a proof of False as an input and can output a proof of any
+proposition. Not has type $Prop \to Prop$ and is denoted $\lnot$, so for
+some Prop $P$, $\lnot P$ is also a Prop. $Not\;P$ is defined as
+$P\to False$. $And$, $Or$, and $Iff$ are all terms of Type 
+$Prop\to Prop\to Prop$, and are denoted by 
+$\wedge$, $\vee$, and $\leftrightarrow$ respectively. These logical connectives
+all have introduction and elimination rules; introduction rules for
+creating a term with the type of the connective, and elimnation rules for
+turning terms with the type of the connective into proofs of other propositions.
+For example, $And.intro$ takes proofs of $P$ and $Q$ and returns a proof of
+$P\wedge Q$. $And$ has two elimination rules, $And.left$ takes a proof
+of $P\wedge Q$ to a proof of $P$, and $And.right$ takes a proof of 
+$P\wedge Q$ to a proof of $Q$. 
+
+\subsection{Dependent Types and Qualifiers}
+
+Lean implements "Dependent Type Theory," which allows for the quantifiers
+$\forall$ and $\exists$ to be represented in Lean. If $\alpha$ is some
+type and $p$ has type $\alpha\to Prop$, \textbf{TBD}
+
+\subsection{Are "to be" are "not to be" the only options?}
+
+Using the the Curry-Howard Isomorphism and defining logical connectives
+with introduction and elimination rules creates a system of logic which
+is almost as expressive as classical logic, but it has a few shortcomings.
+It's not possible to prove $P\vee\lnot P$ for an arbitrary proposition $P$
+with constructive logic, the logic we have been using in Lean thus far.
+Lean introduces three axioms in order to prove the law of the
+excluded middle: propositional extensionality, functional
+extensionality, and an axiom of choice. Propositional extensionality is the
+axiom that equivalent propositions are entirely equal, functional extensionality
+is an axiom stating any two functions which return the same outputs for any
+given input are entirely equal, and the choice axiom is a function which produces
+an term of an arbitrary type $\alpha$ given that $\alpha$ is a nonempty
+type. Then using Diaconescu's theorem, it's possible to show that for any
+proposition $P$, either $P$ or $\lnot P$ is true. 
+
+The code library doesn't dwell very long on the differences between 
+constructive and classical logic, nor does it discuss the measures
+taken by the Lean library to extend its expressive capabilities to 
+cover classical logic. The library is geared towards an audience of 
+undergradute mathematics majors, so most of the time is spent developing
+their understanding of classical logic.
+
+
 \section{Set Theory}
 
+The structure of the Set Theory section of the code library is modeled after 
+\textit{Topological Spaces} by James Munkres and 
+\textit{An Introduction to Proof through Real Analysis} by Trench, along with
+some influence from the undergraduate course I took at the University of Arizona
+in Formal Proof-Writing. The code library begins with a discussion of basic
+set theory, then has subsections for Relations, Induction, and Cardinality. 
+Induction is introduced here rather than in the opening logic section of the 
+library because it requires more type theory to understand how induction is
+implemented in Lean. As students work through the code library for set theory,
+they will also be learning bits and pieces of type theory and how type theory
+is used in Lean. 
+
 \section{Topology}
+
+This section of the code library is modeled more explicitly after 
+\textit{Topological Spaces} by James Munkres, but also includes
+some influence from \textit{Topologies and Uniformities} because 
+the Lean library Mathlib uses \textit{Topologies and Uniformities}.
+This final section of the code library is much less linear, with only the
+basics subsection as a dependency for the other subsections. The basics
+subsection introduces the idea of a topology, a topological basis, and 
+a handful of methods for creating new topologies. The remainder of the 
+topology section is devoted to specific topological properties:
+compactness, continuity, connectedness, and separation.

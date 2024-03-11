@@ -36,7 +36,8 @@ example {U A : Set X} : IsOpen U → IsClosed A → IsOpen (U \ A) := by
   sorry
 
 -- note that a set might be both open and closed, or neither
-example : IsOpen (Set.univ : Set X) ∧ IsClosed (Set.univ : Set X) := by
+example (S T : Set X) (hST : Disjoint S T) (openS : IsOpen S) (openT : IsOpen T) :
+  IsOpen (Set.univ : Set X) ∧ IsClosed (Set.univ : Set X) := by
   sorry
 
 /-!

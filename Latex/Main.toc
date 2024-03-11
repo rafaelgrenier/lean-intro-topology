@@ -11,5 +11,7 @@
 \contentsline {subsection}{\numberline {0.6.3}Honors Thesis development}{viii}{subsection.0.6.3}%
 \contentsline {chapter}{Structure}{ix}{chapter*.4}%
 \contentsline {section}{\numberline {0.7}Introduction to Lean and Logic}{ix}{section.0.7}%
-\contentsline {section}{\numberline {0.8}Set Theory}{ix}{section.0.8}%
-\contentsline {section}{\numberline {0.9}Topology}{ix}{section.0.9}%
+\contentsline {subsection}{\numberline {0.7.1}Dependent Types and Qualifiers}{x}{subsection.0.7.1}%
+\contentsline {subsection}{\numberline {0.7.2}Are "to be" are "not to be" the only options?}{xi}{subsection.0.7.2}%
+\contentsline {section}{\numberline {0.8}Set Theory}{xi}{section.0.8}%
+\contentsline {section}{\numberline {0.9}Topology}{xi}{section.0.9}%

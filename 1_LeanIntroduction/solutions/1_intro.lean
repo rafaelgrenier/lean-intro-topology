@@ -60,7 +60,7 @@ hP : P and a simplified goal ⊢ Q. "hP" is an arbitrary name here, but it follo
 the convention of calling hypothesis "h" followed by something about the proposition.
 
 If the current goal in the tactic state is Q and there is a hypothesis 'hPQ : P → Q',
-then the tactic "apply hPQ" would change the goal to ⊢ P.
+then the tactic "apply hPQ" would change the goal to ⊢ Q.
 
 If the current goal in the tactic state is P and there is a hypothesis 'hP : P',
 then the tactic "exact hP" would complete the goal. When no goals are left,
@@ -69,56 +69,22 @@ the proof is complete.
 
 variable (P Q R : Prop) -- This means P, Q, and R will be propositions
 
-example (madeUpName : P) (implication : P → Q) : Q := by
-  apply implication
-  exact madeUpName
-
-example : P → P := by
-  intro hP
-  exact hP
-
-example (hPQ : P → Q) (hQR : Q → R) : P → R := by
-  intro hP
-  apply hQR
-  apply hPQ
-  exact hP
-
 -- try it out for yourself!
 
 example : P → Q → P := by
-  sorry
+  intro hP
+  intro hQ
+  exact hP
 
 example : P → (P → Q) → Q := by
-  sorry
+  intro hP hPQ
+  apply hPQ
+  exact hP
 
 -- and a tricky one
 
 example : (P → Q) → ((P → Q) → P) → Q := by
-  sorry
-
-/-
-Before we end this file, there are two more ideas to introduce: True and False.
-As a hypothesis, (h : True) is completely useless, since a proof of True always exists.
-In Lean, the proof of "True" is the theorem "True.intro".
-Rather than writing "exact True.intro" in your tactical proof, the tactic "trivial" exists
-to do the exact same thing and save a handful of letters.
-False, the opposite of True, instead has no means of being proven. However (h : False) is
-the most powerful hypothesis, since anything can follow from a false premise.
-(e.g. If the sky is neon green with polka dots, then I have solved all of mathematics.)
-In Lean, (h : False) can be used with the theorem "False.elim," which states that
-'False → P' for any proposition P.
-
-Notice that True and False have these 'intro' and 'elim' theorems. As we introduce more
-logical connectives, they will also have "intro" and "elim" theorems. An intro theorem is a
-theorem which proves the logical connective (in the case of True, there are no assumptions,
-but generally there will be), and an elim theorem takes the logical connective as a hypothesis
-to prove something else.
--/
-
-example : True := by
-  apply True.intro
-
-example : False → P := by
-  intro hFalse
-  apply False.elim
-  exact hFalse
+  intro hPQ hPQP
+  apply hPQ
+  apply hPQP
+  exact hPQ

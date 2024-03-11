@@ -50,7 +50,7 @@ theorem diag_closed_iff_Haus : @Hausdorff X T_X ↔ IsClosed (@diagonal X) := by
       simp
       exact ⟨xU, yV⟩
   · rintro ⟨h⟩ x y xney
-    let ⟨U, V, openU, openV, xU, yV, hUV⟩ := name (diagonalᶜ) h x y xney
+    rcases name (diagonalᶜ) h x y xney with ⟨U, V, openU, openV, xU, yV, hUV⟩
     use U, V, openU, openV, xU, yV
     intro S SU SV z zS
     simp only [Set.bot_eq_empty, Set.mem_empty_iff_false]
