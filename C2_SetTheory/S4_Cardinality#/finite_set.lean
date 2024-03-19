@@ -32,8 +32,7 @@ Cardinality is expressed Finset.card
 #check Finset.card (Finset.range 12)
 open Finset -- Now we don't need to write Finset.name and can instead write name
 #check card (range 12)
-
-
+#eval card (insert 17 (range 12))
 
 
 /-
@@ -209,146 +208,8 @@ To follow Munkres' path in Lean is possible, but exceptionally tedious and
 involves more investigation into Type theory than was intended for the scope
 of this introduction to Lean. At each stage where Munkres asserts a function
 is bijective, at least 30 lines of Lean code were necessary for me to prove
-it. Furthermore, this section need to use `Fin`, `Equiv`, and `Finite` to be
+it. Furthermore, this section needs to use `Fin`, `Equiv`, and `Finite` to be
 done properly, in addition to Subtype coercion. Since this was too demanding,
 I have decided to leave this section of code absent, and instead describe the
 structure of the basic proofs for understanding finiteness.
--/
-
-/-
-
--- This was just lemma 1 from Munkres
-
-lemma obvi (n : ℕ) : n < n + 1 := by
-  simp
-
-lemma munk1_1 {A : Type} [DecidableEq A] (n : ℕ) (a : A) (f : { x // x ≠ a } → (Fin n)) (bijf : Function.Bijective f):
-  ∃ g : A → (Fin (n + 1)), Function.Bijective g := by
-  let g : A → Fin (n+1) := λ x ↦ if h' : x = a then ⟨n, obvi n⟩ else
-    ⟨(f ⟨x, h'⟩).val, lt_trans (f ⟨x, h'⟩).2 (obvi n)⟩
-  have g_def : ∀ x, g x = if h' : x = a then ⟨n, obvi n⟩ else ⟨(f ⟨x, h'⟩).val, sorry⟩ := by
-    intro x
-    rfl
-  exists g
-  constructor
-  · intro x y gxgy
-    simp [g_def, dite_eq_iff] at gxgy
-    rcases gxgy with (⟨xa, h⟩ | ⟨xna, h⟩)
-    · replace h := Eq.symm h
-      simp [dite_eq_iff] at h
-      rcases h with (ya | ⟨yna, hh⟩)
-      · rw [xa, ya]
-      contrapose hh
-      apply ne_of_lt
-      apply Fin.prop
-    replace h := Eq.symm h
-    simp [dite_eq_iff] at h
-    rcases h with (⟨ya, h⟩ | ⟨yna, h⟩)
-    · contrapose h
-      apply ne_of_gt
-      apply Fin.prop
-    have : (⟨x, xna⟩ : { x // x ≠ a }) = ⟨y, yna⟩ := by
-      apply bijf.1
-      ext
-      exact Eq.symm h
-    rw [Subtype.ext_iff_val] at this
-    exact this
-  intro ⟨k, klen⟩
-  rcases (eq_or_ne k n) with (kn | knn)
-  · exists a
-    simp [g_def]
-    rw [kn]
-  have kltn : k < n := by
-    apply Nat.lt_of_le_and_ne _ knn
-    apply Nat.lt_succ.mp klen
-  rcases bijf.2 ⟨k, kltn⟩ with ⟨⟨x, xna⟩, hx⟩
-  exists x
-  simp [g_def]
-  have : x = a ↔ False := by
-    simp only [iff_false]
-    exact xna
-  simp [this]
-  rw [Fin.ext_iff] at hx
-  simp at hx
-  rw [←hx]
-
-lemma swap_helper {A B : Type} [DecidableEq A] {f : A → B} (a₀ a₁ : A) (hf : Bijective f) :
-  ∃ g : A → B, g a₀ = f a₁ ∧ g a₁ = f a₀ ∧ Bijective g := by
-  exists λ x ↦ if x = a₀ then f a₁ else (if x = a₁ then f a₀ else f x)
-  simp only [ite_self, ite_true, ite_eq_right_iff, true_and]
-  apply And.intro
-  · intro h
-    congr
-  constructor
-  · intro x y
-    simp [ite_eq_iff, eq_ite_iff]
-    rintro (⟨ya0, h⟩ | ⟨nya0, (⟨ya1, (⟨xa0, fa1fa0⟩ | ⟨xna0, h⟩)⟩ | ⟨nya1, (⟨xa0, fa1fy⟩ | ⟨xna0, (⟨xa1, fa0fy⟩ | ⟨xna1, fxfy⟩)⟩)⟩)⟩)
-    · contrapose! h
-      refine ⟨λ xa0 ↦ h (?_), λ xa1 fa0fa1 ↦ h (?_), λ xna1 h' ↦ xna1 (hf.1 h')⟩
-      · rw [xa0, ya0]
-      · rw [xa1, ya0]
-        exact hf.1 (Eq.symm fa0fa1)
-    · rw [ya1, xa0]
-      apply Eq.symm
-      apply hf.1 fa1fa0
-    · contrapose! h
-      refine ⟨λ xa1 ↦ h ?_, λ h' ↦ xna0 $ hf.1 h'⟩
-      rw [xa1, ya1]
-    · exact False.elim $ nya1 $ Eq.symm $ hf.1 fa1fy
-    · exact False.elim $ nya0 $ Eq.symm $ hf.1 fa0fy
-    · exact hf.1 fxfy
-  intro b
-  rcases hf.2 b with ⟨x, hx⟩
-  rcases (eq_or_ne x a₀) with (xa0 | xna0)
-  · exists a₁
-    rw [←hx, xa0]
-    simp
-    intro h
-    congr
-  rcases (eq_or_ne x a₁) with (xa1 | xna1)
-  · exists a₀
-    rw [←hx, xa1]
-    simp
-  have aux : x = a₀ ↔ False := by rwa [iff_false]
-  have aux': x = a₁ ↔ False := by rwa [iff_false]
-  exists x
-  simp only [aux, aux', ite_false]
-  exact hx
-
-lemma munk1_2 {A : Type} [DecidableEq A] (n : ℕ) (a : A) (f : A → Fin (n + 1)) (bijf : Function.Bijective f) :
-  ∃ g : { x // x ≠ a } → Fin n, Function.Bijective g := by
-  rcases bijf.2 ⟨n, obvi n⟩ with ⟨a₁, ha1⟩
-  wlog h : f a = ⟨n, obvi n⟩
-  · rcases (swap_helper a a₁ bijf) with ⟨ff, h₁, _, bijff⟩
-    let claim := this n a ff bijff a
-    apply claim <;> rw [h₁, ha1]
-  · exists λ x ↦ ⟨f x, ?_⟩
-    apply Nat.lt_of_le_and_ne
-    apply Nat.lt_succ.mp
-    apply Fin.prop
-    intro hn
-    apply x.2
-    apply bijf.1
-    ext
-    rw [hn, h]
-    constructor
-    · intro x y
-      simp
-      intro fxfy
-      ext
-      apply bijf.1
-      ext
-      exact fxfy
-    intro ⟨k, kltn⟩
-    simp only [ne_eq, Fin.mk.injEq, Subtype.exists, exists_prop]
-    have klen : k < n + 1 := lt_trans kltn (obvi n)
-    rcases bijf.2 ⟨k, klen⟩ with ⟨x, hx⟩
-    exists x
-    apply And.intro
-    · intro xa
-      apply (Nat.ne_of_lt kltn)
-      rw [xa] at hx
-      rw [hx, Fin.ext_iff] at h
-      exact h
-    · apply Fin.ext_iff.mp hx
 -/

@@ -103,3 +103,6 @@ def sum_cubes_le : ℕ → ℕ := λ n ↦ ∑ k in range (n + 1), k^3
 -- let's prove this pattern to hold for all n
 example (n : ℕ) : (sum_nats_le n)^2 = sum_cubes_le n := by
   sorry
+
+example : ∀ n : ℕ, 6 ∣ (2 * n ^ 3 + 3 * n ^ 2 + n) := by
+  sorry

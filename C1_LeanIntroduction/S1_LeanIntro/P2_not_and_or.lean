@@ -109,9 +109,6 @@ Mathematics in Lean and Theorem Proving in Lean. These two textbooks are accessi
 in the VSCode editor by typing ctrl-shift-p and selecting "Open Documentation View."
 -/
 
-example : ¬(P ∨ Q) → (¬P ∧ ¬Q) := by
-  sorry
-
 example : ¬(P → Q) → (¬Q) := by
   sorry
 

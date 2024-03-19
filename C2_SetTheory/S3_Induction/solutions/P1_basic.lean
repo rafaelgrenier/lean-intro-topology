@@ -34,10 +34,11 @@ lemma one_le_two_pow_nat : ∀ n : ℕ, 1 ≤ 2 ^ n := by
   intro n
   induction' n with n ih
   · -- Base case: `1 ≤ 2 ^ 0`
-    sorry
+    apply le_refl
   -- Induction step : `1 ≤ 2 ^ n → 1 ≤ 2 ^ (n+1)`
   rw [Nat.pow_succ, Nat.mul_two]
-  sorry
+  apply le_trans ih
+  exact Nat.le_add_left (2 ^ n) (2 ^ n)
 
 example : ∀ n : ℕ, n ≤ 2^n := by
   intro n
@@ -56,10 +57,18 @@ def even (n : ℕ) := ∃ k, n = 2 * k
 def odd (n : ℕ) := ∃ k, n = 2 * k + 1
 theorem even_or_odd (n : ℕ) : (even n) ∨ (odd n) := by {
   induction' n with n ih
-  · sorry
+  · apply Or.inl
+    exists 0
   rw [Nat.succ_eq_add_one]
   dsimp [even, odd]
-  sorry
+  rcases ih with (⟨k, hk⟩ | ⟨k, hk⟩)
+  · apply Or.inr
+    exists k
+    rw [hk]
+  · apply Or.inl
+    exists k + 1
+    rw [hk]
+    ring
 }
 /- ## Strong vs. Weak Induction
 
@@ -99,6 +108,9 @@ example : ¬well_ordered ℤ := by
   apply (by norm_num : ¬(n ≤ n-1))
   apply nlower
   trivial
+
+
+
 
 
 
