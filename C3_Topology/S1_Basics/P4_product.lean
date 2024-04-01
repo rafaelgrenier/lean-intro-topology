@@ -68,4 +68,9 @@ lemma open_prod_iff_covered_prod_nhds : ∀ U : Set (X×X), IsOpen U ↔ ∀ p �
     use A, B, openA, openB
     use xA
 
+-- Lean has the following useful lemmas for the product topology:
+#check isOpen_prod_iff
+#check prod_eq_generateFrom
+#check IsOpen.prod
+
 end ProductTop

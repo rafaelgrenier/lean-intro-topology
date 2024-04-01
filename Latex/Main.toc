@@ -14,4 +14,12 @@
 \contentsline {subsection}{\numberline {0.7.1}Dependent Types and Qualifiers}{x}{subsection.0.7.1}%
 \contentsline {subsection}{\numberline {0.7.2}Are "to be" are "not to be" the only options?}{xi}{subsection.0.7.2}%
 \contentsline {section}{\numberline {0.8}Set Theory}{xi}{section.0.8}%
-\contentsline {section}{\numberline {0.9}Topology}{xi}{section.0.9}%
+\contentsline {subsection}{\numberline {0.8.1}Fundamentals of Set Theory}{xi}{subsection.0.8.1}%
+\contentsline {subsection}{\numberline {0.8.2}Relations}{xii}{subsection.0.8.2}%
+\contentsline {subsection}{\numberline {0.8.3}Induction}{xii}{subsection.0.8.3}%
+\contentsline {subsection}{\numberline {0.8.4}Cardinality}{xii}{subsection.0.8.4}%
+\contentsline {section}{\numberline {0.9}Topology}{xii}{section.0.9}%
+\contentsline {subsection}{\numberline {0.9.1}Topology and Bases}{xii}{subsection.0.9.1}%
+\contentsline {subsection}{\numberline {0.9.2}Continuity}{xii}{subsection.0.9.2}%
+\contentsline {subsection}{\numberline {0.9.3}Connectedness}{xii}{subsection.0.9.3}%
+\contentsline {subsection}{\numberline {0.9.4}Compactness}{xii}{subsection.0.9.4}%

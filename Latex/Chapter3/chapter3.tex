@@ -129,6 +129,40 @@ implemented in Lean. As students work through the code library for set theory,
 they will also be learning bits and pieces of type theory and how type theory
 is used in Lean. 
 
+\subsection{Fundamentals of Set Theory}
+
+The first section of the Set Theory chapter in the code library is 
+a speedy introduction to Set Theory and a referral to chapter 4 of
+MIL. Lean identifies sets with predicates on a type, i.e. a map
+$p:X\to Prop$ corresponds to the set $S:\mathrm{Set}\;X$ given by
+$\{x:X\;|\;p\;x\}$. And given a set $S:\mathrm{Set}\;X$, the corresponding
+predicate is a map $p:X\to Prop:=\lambda x\mapsto x\in S$. Since sets are
+defined in terms of types, there is also a set which contains all terms 
+of the given type, which Lean denotes "Set.univ"
+[]
+
+\subsection{Relations}
+
+Relations are implemented in Lean as maps $r:X\to X\to Prop$. The 
+main relations discussed in this section were order and equivalence relations,
+beginning with an introduction to bundling in Lean. Many objects in 
+mathematics are characterized not just by the sets or functions themselves,
+but also by the properties they satisfy. For example, an equivalence relation
+is not just any relation on a type, but a relation which is also reflexive, 
+symmetric, and transitive. Thus the object of an equivalence relation is really
+4 things: the relation itself and 3 properties of that relation. Lean accomplishes
+this bundling of several types into a single type with structures and typeclasses.
+A structure in Lean is a type with a constructor which has all the fields
+as arguments, and elimination functions which extract the individual fields.
+\begin{verbatim}
+    structure <name> <parameters> <parent-structures> where
+    <constructor> :: <fields>
+\end{verbatim}
+
+\subsection{Induction}
+
+\subsection{Cardinality}
+
 \section{Topology}
 
 This section of the code library is modeled more explicitly after 
@@ -141,3 +175,11 @@ subsection introduces the idea of a topology, a topological basis, and
 a handful of methods for creating new topologies. The remainder of the 
 topology section is devoted to specific topological properties:
 compactness, continuity, connectedness, and separation.
+
+\subsection{Topology and Bases}
+
+\subsection{Continuity}
+
+\subsection{Connectedness}
+
+\subsection{Compactness}
