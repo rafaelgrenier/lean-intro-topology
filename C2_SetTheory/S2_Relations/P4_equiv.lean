@@ -87,7 +87,7 @@ lemma eqv_class_eq_iff_eqv (a b : ℤ) : eqv_class a = eqv_class b ↔ a ≈ b :
 
 
 def isPartition {X : Type} (P : Set (Set X)) : Prop :=
-  (∀ S ∈ P, ∀ T ∈ P, S ≠ T → Disjoint S T) ∧ (∀ x, ∃ S ∈ P, x ∈ S)
+  (∀ S ∈ P, ∀ T ∈ P, S ≠ T → Disjoint S T) ∧ (∀ x, ∃ S ∈ P, x ∈ S) ∧ (∅ ∉ P)
 
 -- CLAIM: Equivalence classes form a partition
 example : isPartition {S | ∃ x, S = eqv_class x} := by
@@ -102,10 +102,16 @@ example : isPartition {S | ∃ x, S = eqv_class x} := by
     apply hnxy
     apply parity_transitive _ hby
     apply parity_symmetric hax
+  apply And.intro
   · intro x
     exists eqv_class x
     simp
     use ⟨x, rfl⟩
+    exact mem_self_eqv_class x
+  · simp only [Set.mem_setOf_eq, not_exists]
+    intro x hfalse
+    suffices h : x ∈ (∅ : Set ℤ) by exact h
+    rw [hfalse]
     exact mem_self_eqv_class x
 
 -- CLAIM: A partition specifies an equivalence relation
@@ -114,7 +120,7 @@ variable {X : Type} (P : Set (Set X))
 def specify (x y : X) : Prop :=
   ∃ S ∈ P, x ∈ S ∧ y ∈ S
 
-example : isPartition P → Equivalence (specify P) := λ ⟨Pdisj, Pcover⟩ ↦ {
+example : isPartition P → Equivalence (specify P) := λ ⟨Pdisj, Pcover, _⟩ ↦ {
   refl := by
     intro x
     rcases (Pcover x) with ⟨S, _, _⟩

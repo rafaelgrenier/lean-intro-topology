@@ -151,7 +151,8 @@ example : ¬hasSqrtMod3 (two) := by
   clear hn s
   sorry -- at this point the proof is entirely free of quotients and amounts to
         -- showing that `n*n - 2 = 3*k` has no solutions over the integers.
-        -- Let's try going about this another way.
+        -- Let's try going about this another way, actually making use
+        -- of the Quotient type to solve the problem.
 
 -- First we show that Zmod3univ actually encompasses all of Zmod3
 -- In other words, every term of type Zmod3 is either `zero`, `one`, or `two`.

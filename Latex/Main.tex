@@ -6,6 +6,12 @@
 \usepackage{amssymb}
 \usepackage{verbatim}
 \usepackage{epstopdf}
+\usepackage{courier}
+\usepackage{listings}% http://ctan.org/pkg/listings
+\lstset{
+  basicstyle={\small\ttfamily},
+  mathescape
+}
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
 \usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=blue,
@@ -30,6 +36,7 @@
 \def\V{\ensuremath {\cal V}}
 \def\R{\ensuremath {\cal R}}
 \def\tr{\ensuremath {\mbox{tr}}}
+\newcommand{\lean}[1]{\texttt{#1}}
 
 
 
