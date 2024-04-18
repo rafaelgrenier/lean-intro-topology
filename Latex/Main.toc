@@ -7,15 +7,15 @@
 \contentsline {section}{\numberline {0.5}Fall 2023}{vii}{section.0.5}%
 \contentsline {section}{\numberline {0.6}Spring 2023}{viii}{section.0.6}%
 \contentsline {subsection}{\numberline {0.6.1}Finishing the library}{viii}{subsection.0.6.1}%
-\contentsline {subsection}{\numberline {0.6.2}Insights as a TA}{viii}{subsection.0.6.2}%
-\contentsline {subsection}{\numberline {0.6.3}Honors Thesis development}{viii}{subsection.0.6.3}%
-\contentsline {chapter}{Structure}{ix}{chapter*.4}%
-\contentsline {section}{\numberline {0.7}Introduction to Lean and Logic}{ix}{section.0.7}%
-\contentsline {subsection}{\numberline {0.7.1}Dependent Types and Qualifiers}{x}{subsection.0.7.1}%
-\contentsline {subsection}{\numberline {0.7.2}Are "to be" are "not to be" the only options?}{xi}{subsection.0.7.2}%
-\contentsline {section}{\numberline {0.8}Set Theory}{xi}{section.0.8}%
-\contentsline {subsection}{\numberline {0.8.1}Fundamentals of Set Theory}{xi}{subsection.0.8.1}%
-\contentsline {subsection}{\numberline {0.8.2}Relations}{xii}{subsection.0.8.2}%
-\contentsline {subsection}{\numberline {0.8.3}Induction}{xiv}{subsection.0.8.3}%
-\contentsline {section}{\numberline {0.9}Topology}{xiv}{section.0.9}%
-\contentsline {subsection}{\numberline {0.9.1}Topology and Bases}{xiv}{subsection.0.9.1}%
+\contentsline {subsection}{\numberline {0.6.2}Insights as a TA}{ix}{subsection.0.6.2}%
+\contentsline {subsection}{\numberline {0.6.3}Future Development}{ix}{subsection.0.6.3}%
+\contentsline {chapter}{Structure}{xi}{chapter*.4}%
+\contentsline {section}{\numberline {0.7}Introduction to Lean and Logic}{xi}{section.0.7}%
+\contentsline {subsection}{\numberline {0.7.1}Dependent Types and Qualifiers}{xii}{subsection.0.7.1}%
+\contentsline {subsection}{\numberline {0.7.2}Are "to be" are "not to be" the only options?}{xiii}{subsection.0.7.2}%
+\contentsline {section}{\numberline {0.8}Set Theory}{xiii}{section.0.8}%
+\contentsline {subsection}{\numberline {0.8.1}Fundamentals of Set Theory}{xiii}{subsection.0.8.1}%
+\contentsline {subsection}{\numberline {0.8.2}Relations}{xiv}{subsection.0.8.2}%
+\contentsline {subsection}{\numberline {0.8.3}Induction}{xvi}{subsection.0.8.3}%
+\contentsline {section}{\numberline {0.9}Topology}{xvi}{section.0.9}%
+\contentsline {subsection}{\numberline {0.9.1}Topology and Bases}{xvi}{subsection.0.9.1}%

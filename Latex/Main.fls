@@ -206,12 +206,6 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT ./Chapter3/chapter3.tex
-INPUT ./Chapter3/chapter3.tex
-OUTPUT Chapter3/chapter3.aux
-INPUT ./Chapter3/chapter3.tex
-INPUT ./Chapter3/chapter3.tex
-INPUT Chapter3/chapter3.tex
 INPUT c:/texlive/2023/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT c:/texlive/2023/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT c:/texlive/2023/texmf-dist/tex/latex/psnfss/ot1pcr.fd
@@ -219,6 +213,12 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/adobe/courier/pcrr7t.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc
+INPUT ./Chapter3/chapter3.tex
+INPUT ./Chapter3/chapter3.tex
+OUTPUT Chapter3/chapter3.aux
+INPUT ./Chapter3/chapter3.tex
+INPUT ./Chapter3/chapter3.tex
+INPUT Chapter3/chapter3.tex
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm

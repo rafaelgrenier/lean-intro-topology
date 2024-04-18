@@ -267,18 +267,45 @@ Lean, and is accessibly-written enough for the undergraduate audience of this
 code library, so I decided to send readers to that text directly rather than 
 novicely rewriting the source material. 
 
+
+
 \section{Topology}
 
 This chapter of the code library is modeled more explicitly after 
 \textit{Topological Spaces} by James Munkres, but also includes
 some influence from \textit{Topologies and Uniformities} because 
 the Lean library Mathlib uses \textit{Topologies and Uniformities}.
-This final section of the code library is much less linear, with only the
-basics subsection as a dependency for the other subsections. The basics
-subsection introduces the idea of a topology, a topological basis, and 
-a handful of methods for creating new topologies. The remainder of the 
-topology section is devoted to specific topological properties:
-compactness, continuity, connectedness, and separation.
+This final section introduces the idea of a topology, a topological basis,
+and a handful of methods for constructing topologies. Unlike the primary 
+resource for topology in Lean, Chapter 9 of \textit{Mathematics in Lean}, 
+this section places minimal focus on filters and metric spaces. In fact, 
+this code library bears no mention of metric spaces, which ought to
+be remedied should the code library be expanded to cover more of topology.
+The framework for topology in Mathlib uses filters extensively, which
+are useful for codifying limits and continuity at a point, but I decided 
+the filter approach to topology is less intuitive than the basis 
+approach for a first introduction to an undergraduate student.
 
 \subsection{Topology and Bases}
 
+The first file introduces the formal definitions of a topology and a 
+topological basis, then scaffolds a proof that the collection of arbitrary
+unions of basis sets is a topology. Just these two definitions require 
+knowledge of much that was introduced in the previous set theory chapter:
+structures, typeclasses, the axiom of choice, and arbitrary unions. Lean
+uses a typeclass \lean{TopologicalSpace} to encode topologies, which can 
+make comparing two or more topologies difficult, since instances usually
+go unnamed in Mathlib. Thus to compare a set under two different topologies
+requires explicitly providing variable names for each topology into whichever
+theorems from Mathlib are used, otherwise Lean will infer the most recently 
+defined instance of a suitable topology as an argument. Despite this mild 
+annoyance, the typeclass framework is much more suitable in the common context 
+where a set has a standard topology which would be irritating to explicitly 
+derive at each stage. The choice to represent topologies with typeclasses also 
+benefits ease of use of hierarchies, so Hausdorff spaces and Metric spaces can 
+simply be defined atop the \lean{TopologicalSpace} typeclass.
+
+The second file expands upon the definition of "open" and "closed" sets, 
+demonstrates that the finite union and arbitrary intersection of closed sets
+remain closed, and introduces the definitions and some properties of the 
+interior, closure, and boundary of a set.

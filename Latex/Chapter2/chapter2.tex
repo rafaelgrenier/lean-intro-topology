@@ -75,12 +75,62 @@ which introduces students to Lean.
 
 \subsection{Finishing the library}
 
+My original plan for the project
+included a subsection in the Set Theory chapter of the library for
+cardinality which would cover the explicit definitions of finiteness, 
+countability, and uncountability, but after several weeks of work on 
+the code without any forward progress, I decided to cut cardinality
+from the code library. The first roadblock I encountered trying to
+formalize Munkres' approach to cardinality was a paralysis of possibility, 
+since Lean has finiteness defined for sets and types, each of which are
+useful in select situations. Mathlib has the type \lean{Finset}, which is 
+built atop Lean's programming infrastructure for lists, so all terms 
+of type \lean{Finset} are constructed explicitly by enumerating their 
+elements. This extensional finite set construction makes proving theorems about
+cardinality all but trivial, but requires some type of external means
+to interpret intensionally defined sets as \lean{Finset}s. Mathlib also 
+has the type \lean{Fin : Nat $\to$ Type} and the 
+predicate \lean{Finite : Type $\to$ Prop}. For \lean{n : Nat}, 
+\lean{Fin n} is a subtype of \lean{Nat} consisting of all natural numbers
+less than \lean{n}. \lean{Finite} is defined in terms of \lean{Fin}, where
+a type is \lean{Finite} if there exists a bijective function from
+that type to some \lean{Fin n}. This approach to finiteness matches the formal
+approach described by Munkres, but requires introducing extraneous concepts
+from the Mathlib library used for the construction of \lean{Finite}, namely
+\lean{Equiv} and \lean{Subtype}. I attempted writing some files in the code
+library relying on each approach, since \lean{Finset} is actually used 
+later on in topology where finite subcovers and finite intersections are 
+concerned, but only \lean{Finite} lends itself to the formal proofs of
+the uniqueness of cardinality and so on. \lean{Finite} is also most similar
+to how countability and uncountability are defined in Mathlib, so it provides
+a better segue. However, I was met with another significant hurdle when trying
+to prove that cardinality is unique using \lean{Finite}. Extending a function's 
+domain to a larger type requires using Lean's if-then-else logic, which
+is tricky to use in tactic proofs. Even if the if-condition is met by 
+one of the hypotheses, some elbow grease is necessary to convince Lean to
+simplify the if-then-else expression. This felt like an unreasonable onus 
+to place upon students learning Lean and set theory for the first time, so 
+I spent several hours searching for a workaround, but to no avail. 
+
+Ultimately,
+I decided to scrap the Countability section, for the sake of producing a 
+cohesive code library before the end of the semester. Consequently, I also
+needed to drop the Compactness section of the Topology chapter of
+the code library. Due to time pressure, I pared down the Topology chapter
+even further, leaving only the first section to be written. By April 2024, 
+I had finished writing all the remaining code within the limited scope, 
+including solutions for all the exercises within the code library.
+
 \subsection{Insights as a TA}
 
-For the first month and a half of the class, Dr. Cherkis lectured
-in parallel to the structure of Mathematics in Lean 4. I was taken
-aback by the difficulty students had in grasping the "apply" tactic,
-which transforms a tactic state with goal $Q$ to a tactic state
-with goal $P$ by using an implication $P\to Q$.
+Dr. Cherkis constructed a curriculum for the graduate level course 
+which spent the first two months leading students through the first 6
+chapters of \textit{Mathematics in Lean}, then took a handful of weeks to 
+guide students through my code library, before returning to finish 
+MIL in April. The class met twice weekly for 75 minutes, and a typical class
+session spent about 20 minutes on lecture, and the remaining time dedicated
+to individual or paired work on students' computers with Lean exercises. During
+the group and individual work time, Dr. Cherkis and I helped students upon 
+request, clarifying concepts or quirks of Lean.
 
-\subsection{Honors Thesis development}
+\subsection{Future Development}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.19)  13 APR 2024 16:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.19)  18 APR 2024 12:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -348,42 +348,42 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 
-]) [8]
-\openout2 = `Chapter3/chapter3.aux'.
-
- (./Chapter3/chapter3.tex
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 15.
+]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 86.
  (c:/texlive/2023/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [9
+) [8{c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}]) [9]
+\openout2 = `Chapter3/chapter3.aux'.
+
+ (./Chapter3/chapter3.tex [10
 
 
 
 
-{c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+] [11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10] [11] [12] [13]) [14] (./Main.aux (./Chapter1/chapter1.aux) (./Chapter2/chapter2.aux) (./Chapter3/chapter3.aux))
+ [12] [13] [14] [15] [16]) [17] (./Main.aux (./Chapter1/chapter1.aux) (./Chapter2/chapter2.aux) (./Chapter3/chapter3.aux))
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-11>
  ***********
 Package rerunfilecheck Info: File `Main.out' has not changed.
-(rerunfilecheck)             Checksum: 3D61BAEEE02F6AC9B1A44F4CB297A0D4;3080.
+(rerunfilecheck)             Checksum: C1F62105277E52980F1CDB343A2631D0;3042.
  ) 
 Here is how much of TeX's memory you used:
- 11526 strings out of 474174
- 175006 string characters out of 5749676
+ 11529 strings out of 474174
+ 175030 string characters out of 5749676
  1946460 words of memory out of 5000000
  33602 multiletter control sequences out of 15000+600000
  571363 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,6n,67p,563b,1049s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on Main.pdf (14 pages, 176890 bytes).
+Output written on Main.pdf (17 pages, 182465 bytes).
 PDF statistics:
- 261 PDF objects out of 1000 (max. 8388607)
- 220 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
+ 274 PDF objects out of 1000 (max. 8388607)
+ 230 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
  169 words of extra memory for PDF output out of 10000 (max. 10000000)
 

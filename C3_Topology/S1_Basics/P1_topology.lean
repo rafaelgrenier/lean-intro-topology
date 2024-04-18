@@ -49,15 +49,15 @@ instance (B : Basis X) : TopologicalSpace X := {
 
   IsOpenInter := by
     intro U V UT VT
-    let ⟨C₁, hC₁, UC₁⟩ := UT
-    let ⟨C₂, hC₂, VC₂⟩ := VT
+    rcases UT with ⟨C₁, hC₁, UC₁⟩
+    rcases VT with ⟨C₂, hC₂, VC₂⟩
     have h : ∀ x ∈ U ∩ V, ∃ B₃ ∈ B, B₃ ⊆ U ∩ V ∧ x ∈ B₃ := by
       rintro x ⟨xU, xV⟩
       rw [UC₁] at xU
       rw [VC₂] at xV
       let ⟨B₁, B₁C₁, xB₁⟩ := xU
       let ⟨B₂, B₂C₂, xB₂⟩ := xV
-      clear xU xV UT VT
+      clear xU xV
       let ⟨B₃, B₃B, xB₃, B₃inter⟩ := B.Basis_Cover_Inter (hC₁ B₁C₁) (hC₂ B₂C₂) x ⟨xB₁, xB₂⟩
       exists B₃
       sorry
