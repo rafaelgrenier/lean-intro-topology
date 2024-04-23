@@ -1,21 +1,18 @@
 \contentsline {chapter}{Introduction}{v}{chapter*.2}%
-\contentsline {section}{\numberline {0.1}What is Lean?}{v}{section.0.1}%
-\contentsline {section}{\numberline {0.2}Why use Lean?}{v}{section.0.2}%
-\contentsline {section}{\numberline {0.3}Who else uses Lean?}{vi}{section.0.3}%
-\contentsline {chapter}{Development}{vii}{chapter*.3}%
-\contentsline {section}{\numberline {0.4}Summer 2023}{vii}{section.0.4}%
-\contentsline {section}{\numberline {0.5}Fall 2023}{vii}{section.0.5}%
-\contentsline {section}{\numberline {0.6}Spring 2023}{viii}{section.0.6}%
-\contentsline {subsection}{\numberline {0.6.1}Finishing the library}{viii}{subsection.0.6.1}%
-\contentsline {subsection}{\numberline {0.6.2}Insights as a TA}{ix}{subsection.0.6.2}%
-\contentsline {subsection}{\numberline {0.6.3}Future Development}{ix}{subsection.0.6.3}%
-\contentsline {chapter}{Structure}{xi}{chapter*.4}%
-\contentsline {section}{\numberline {0.7}Introduction to Lean and Logic}{xi}{section.0.7}%
-\contentsline {subsection}{\numberline {0.7.1}Dependent Types and Qualifiers}{xii}{subsection.0.7.1}%
-\contentsline {subsection}{\numberline {0.7.2}Are "to be" are "not to be" the only options?}{xiii}{subsection.0.7.2}%
-\contentsline {section}{\numberline {0.8}Set Theory}{xiii}{section.0.8}%
-\contentsline {subsection}{\numberline {0.8.1}Fundamentals of Set Theory}{xiii}{subsection.0.8.1}%
-\contentsline {subsection}{\numberline {0.8.2}Relations}{xiv}{subsection.0.8.2}%
-\contentsline {subsection}{\numberline {0.8.3}Induction}{xvi}{subsection.0.8.3}%
-\contentsline {section}{\numberline {0.9}Topology}{xvi}{section.0.9}%
-\contentsline {subsection}{\numberline {0.9.1}Topology and Bases}{xvi}{subsection.0.9.1}%
+\contentsline {chapter}{Structure}{vii}{chapter*.3}%
+\contentsline {section}{\numberline {0.1}Introduction to Lean and Logic}{vii}{section.0.1}%
+\contentsline {subsection}{\numberline {0.1.1}Dependent Types and Qualifiers}{viii}{subsection.0.1.1}%
+\contentsline {subsection}{\numberline {0.1.2}Are "to be" are "not to be" the only options?}{ix}{subsection.0.1.2}%
+\contentsline {section}{\numberline {0.2}Set Theory}{ix}{section.0.2}%
+\contentsline {subsection}{\numberline {0.2.1}Fundamentals of Set Theory}{ix}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {0.2.2}Relations}{x}{subsection.0.2.2}%
+\contentsline {subsection}{\numberline {0.2.3}Induction}{xii}{subsection.0.2.3}%
+\contentsline {section}{\numberline {0.3}Topology}{xiii}{section.0.3}%
+\contentsline {subsection}{\numberline {0.3.1}Topology and Bases}{xiii}{subsection.0.3.1}%
+\contentsline {chapter}{Development}{xv}{chapter*.4}%
+\contentsline {section}{\numberline {0.4}Summer 2023}{xv}{section.0.4}%
+\contentsline {section}{\numberline {0.5}Fall 2023}{xvi}{section.0.5}%
+\contentsline {section}{\numberline {0.6}Spring 2023}{xvi}{section.0.6}%
+\contentsline {subsection}{\numberline {0.6.1}Finishing the library}{xvii}{subsection.0.6.1}%
+\contentsline {subsection}{\numberline {0.6.2}Insights as a TA}{xvii}{subsection.0.6.2}%
+\contentsline {subsection}{\numberline {0.6.3}Future Development}{xix}{subsection.0.6.3}%

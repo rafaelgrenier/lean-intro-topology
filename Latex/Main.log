@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.19)  18 APR 2024 12:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.19)  22 APR 2024 21:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -330,7 +330,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
-] (./Main.toc)
+] (./Main.toc
+Overfull \hbox (0.66916pt too wide) detected at line 16
+ []\OT1/cmr/m/n/10.95 xvii
+ []
+
+
+Overfull \hbox (0.66916pt too wide) detected at line 17
+ []\OT1/cmr/m/n/10.95 xvii
+ []
+
+)
 \tf@toc=\write4
 \openout4 = `Main.toc'.
 
@@ -340,50 +350,59 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  (./Chapter1/chapter1.tex [4
 
 
-] [5]) [6]
+]
+Overfull \hbox (1.27385pt too wide) in paragraph at lines 6--22
+\OT1/cmr/m/n/10.95 Many un-der-grad-u-ate Math-e-mat-ics pro-grams re-quire stu-dents to take a proof-writing course,
+ []
+
+[5]) [6]
 \openout2 = `Chapter2/chapter2.aux'.
 
- (./Chapter2/chapter2.tex [7
-
-
-
-
-]
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 86.
+ (./Chapter2/chapter2.tex
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 15.
  (c:/texlive/2023/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [8{c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}]) [9]
+) [7
+
+
+
+
+{c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}] [8] [9] [10] [11] [12]) [13]
 \openout2 = `Chapter3/chapter3.aux'.
 
- (./Chapter3/chapter3.tex [10
+ (./Chapter3/chapter3.tex [14
 
 
 
 
-] [11]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+] [15]
+Underfull \vbox (badness 6510) has occurred while \output is active []
 
- [12] [13] [14] [15] [16]) [17] (./Main.aux (./Chapter1/chapter1.aux) (./Chapter2/chapter2.aux) (./Chapter3/chapter3.aux))
+ [16] [17] [18] [19]) [20] (./Main.bbl) [21
+
+
+
+] (./Main.aux (./Chapter1/chapter1.aux) (./Chapter2/chapter2.aux) (./Chapter3/chapter3.aux))
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-11>
  ***********
 Package rerunfilecheck Info: File `Main.out' has not changed.
-(rerunfilecheck)             Checksum: C1F62105277E52980F1CDB343A2631D0;3042.
+(rerunfilecheck)             Checksum: 67CFC88FBB4A97848D13F07557336747;2628.
  ) 
 Here is how much of TeX's memory you used:
- 11529 strings out of 474174
- 175030 string characters out of 5749676
- 1946460 words of memory out of 5000000
- 33602 multiletter control sequences out of 15000+600000
- 571363 words of font info for 86 fonts, out of 8000000 for 9000
+ 11518 strings out of 474174
+ 174766 string characters out of 5749676
+ 1944460 words of memory out of 5000000
+ 33594 multiletter control sequences out of 15000+600000
+ 569815 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,6n,67p,563b,1049s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on Main.pdf (17 pages, 182465 bytes).
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on Main.pdf (21 pages, 199304 bytes).
 PDF statistics:
- 274 PDF objects out of 1000 (max. 8388607)
- 230 compressed objects within 3 object streams
- 57 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 290 PDF objects out of 1000 (max. 8388607)
+ 240 compressed objects within 3 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 145 words of extra memory for PDF output out of 10000 (max. 10000000)
 

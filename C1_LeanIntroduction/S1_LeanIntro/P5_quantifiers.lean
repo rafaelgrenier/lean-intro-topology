@@ -28,8 +28,6 @@ example : ∀ n : Nat, n ≥ 0 := by
 
 -- another example
 
-
-
 example : ∀ P : Prop, ¬(P ∧ ¬P) := by
   intro P
   intro hP

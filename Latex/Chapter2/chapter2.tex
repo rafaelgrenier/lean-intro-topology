@@ -3,134 +3,340 @@
 
 %!TEX root = 
 
-\chapter[Development]{Development Process}
+\chapter{Structure}
 
-This honors thesis project began in June 2023, stemming from
-an idea Dr. Sergey Cherkis had for automating the grading
-process in his topology class. Over the summer, I endeavored
-to learn Lean and become comfortable using Mathlib. In the Fall,
-I began building the library, and I finished in the Spring.
+\section{Introduction to Lean and Logic}
 
-\section{Summer 2023}
+Conventionally, Propositional Logic is taught with a few basic ideas:
+A proposition is any statement which can be binarily assigned true or 
+false, and every proposition must be either true or false. Next introduced 
+are truth tables, and different means of combining propositions into 
+larger propositions. We define the meaning of conjunction by appealing to 
+a truth table, wherein \lean{P $\wedge$ Q} is true only if \lean{P} is true 
+and \lean{Q} is true.
+Similar constructions define negation, disjunction, and implication. 
 
-Lean has many resources available to newcomers, so I began
-by tackling the introductory textbooks Mathematics In Lean and
-Theorem Proving In Lean. Mathematics In Lean is peppered with
-exercises for the reader, which I dutifully completed. When
-I read through MIL, it was still written for Lean3, and I only 
-covered the sections introducing Lean itself, set theory, and
-topology.
+In Lean, every term has some Type, and true-or-false claims have the type 
+\lean{Prop}, which is short for Propositions. Any given term \lean{P} with
+type \lean{Prop} is itself a type, and a term \lean{hp : P} is understood to be a 
+proof of the proposition \lean{P}. Therefore any function which produces as its
+output a term of type \lean{P} is a means by which \lean{P} can be proven. This gives 
+us a vehicle by which we can conceive of implication! If there is a function
+\lean{f} which takes as its argument some term \lean{hp} of type \lean{P} and returns
+a term of type \lean{Q}, then \lean{f} is a term with type \lean{P $\to$ Q}. Provided that 
+\lean{P} and \lean{Q} are terms with type \lean{Prop}, \lean{f} can be throught of as a proof
+that \lean{P} implies \lean{Q}. This means of creating implication as a function from
+one Proposition to another is known as the Curry-Howard Isomorphism, and
+provides the basis for Lean as a proof assistant. 
 
-The topology section of Mathematics in Lean was sparse, and took 
-an approach to Topology centered in the notion of filters. 
-\begin{definition}
-    A $\mathbf{Filter}\;F$ is a collection of sets over a space $X$
-    such that \begin{enumerate}
-        \item if $S\in F$ and $\hat{S}$ is a superset of $S$, then
-        $\hat{S}\in F$, and
-        \item for any two sets $S,T\in F$, then  the intersection $S\cap T\in F$.
-    \end{enumerate}
-\end{definition}
+The above mentioned introductions to logic are very different, so I needed
+to make a choice with my code library: Do I use adapt truth tables into
+Lean and teach basic logic that way, or do I introduce basic logic through
+introduction and elimination rules, as is infitting with how Lean itself 
+is organized? I chose to follow the path tread by the structure of Lean itself,
+especially because actual mathematical proof typically abandons truth tables
+before long. Therefore my code library starts with a brief explanation of
+propositions and proofs, where proofs are functions from one proposition to
+another. I then introduce tactics and tactic states, the other main feature
+of Lean. Tactics make proof-writing in Lean flow more smoothly and resemble 
+proof-writing in Human language more than pure functional code. The tactic
+state also represents to the reader/writer of Lean code the names of all
+hypotheses already known (the function arguments and local variables), as 
+well as all the goals of the proofs (the type which the function should return).
+Each new tactic employed updates the tactic state, so proving a theorem with
+tactics amounts to writing tactics until the tactic state represents that there
+are no goals left to be solved. I equip students with knowledge of just 3 basic
+tactics in the beginning: \lean{intro}, \lean{apply}, and \lean{exact}.
 
-% MIL's rough introduction to topology inspired me to create an 
-% alternate educational resource for topology in Lean.
+The \lean{intro} tactic functions similarly to "let" in a human language proof. 
+In some proof about Natural numbers, one might write "let n be a natural number."
+Similarly, in Lean, one would write \lean{intro n}.
+If the current goal in the tactic state is in the form \lean{P $\to$ Q}, then
+\lean{intro hP} would update the tactic state so that there's a new hypothesis
+\lean{hP : P} and a simplified goal \lean{$\vdash$ Q}. \lean{hP} is an arbitrary name here, whatever
+sequence of alphanumeric characters follows the whitespace after \lean{intro} will
+be the name assigned to the term introduced. 
 
-% I took notes on Theorem Proving in Lean
+The \lean{exact} tactic is used for finishing off a proof, and might be compared
+to the phrase "Because \_\_\_\_, the proof is complete." If the current goal is
+\lean{$\vdash$ P} and there is some hypothesis \lean{hp : P}, 
+then writing \lean{exact hp} would complete the proof.
 
-% I read some of Functional Programming
+The \lean{apply} tactic uses implications to change the goal. For example, 
+given the goal \lean{$\vdash$ Q} and the hypothesis \lean{h : P $\to$ Q}, writing
+\lean{apply h} would transform the tactic state such that the new goal
+is \lean{$\vdash$ P}. Since it's known that \lean{P} implies \lean{Q}, 
+proving \lean{P} would suffice to prove \lean{Q}, and the \lean{apply}
+tactic packages that logic into a single line.
 
-% Revisited MIL which had been updated to Lean4 in August
+The code library then works through \lean{True}, \lean{False}, \lean{Not}, 
+\lean{And}, \lean{Or}, and \lean{Iff}.
+\lean{True} and \lean{False} are both propositions, where \lean{True.intro} is a function which
+returns a proof of \lean{True} and requires no arguments, and \lean{False.elim} is a function
+which takes a proof of \lean{False} as an input and can output a proof of any
+proposition. \lean{Not} has type \lean{Prop $\to$ Prop} and is denoted $\lnot$, so for
+some \lean{P : Prop}, \lean{$\lnot$ P} is also a \lean{Prop}. \lean{Not P} is defined as
+\lean{P $\to$ False}. \lean{And}, \lean{Or}, and \lean{Iff} are all terms of type 
+\lean{Prop $\to$ Prop $\to$ Prop}, and are denoted by 
+$\wedge$, $\vee$, and $\leftrightarrow$ respectively. These logical connectives
+all have introduction and elimination rules: introduction rules for
+creating a term with the type of the connective, and elimnation rules for
+turning terms with the type of the connective into proofs of other propositions.
+For example, \lean{And.intro} takes proofs of \lean{P} and \lean{Q} and returns a proof of
+\lean{P $\wedge$ Q}. \lean{And} has two elimination rules, \lean{And.left} takes a proof
+of \lean{P $\wedge$ Q} to a proof of \lean{P}, and \lean{And.right} takes a proof of 
+\lean{P $\wedge$ Q} to a proof of \lean{Q}. 
 
-\section{Fall 2023}
+\subsection{Dependent Types and Qualifiers}
 
-In Late August, I began to work through the Munkres textbook
-"Topological Spaces" with a focus on identifying which parts
-of the textbook were more or less challenging to formalize. 
-Starting in September, I pivoted to working on the first section
-of my instructional repository, Logic in Lean. I spent the first few 
-weeks of september deciding how to structure the introduction to 
-formal logic, which ultimately culminated in the current path
-starting with Propositions, truth and falsity, then leading through
-implication, disjunction, conjunction, negation, and the 2 quantifiers.
-I actually began writing code and comments in late september, and by
-mid-october I had written files explaining proofs, proposition, and
-implication; true, false, introduction rules, and elimination rules;
-negation; conjunction and disjunction; and the existential and 
-universal quantifiers. This was also the time when I began backing 
-my files up on github. The remainder of the semester was spent 
-continuing to flesh out the library, adding a section on set theory
-and a section on Topology.
+Lean implements "Dependent Type Theory," which allows for the quantifiers
+$\forall$ and $\exists$ to be represented in Lean. If $\alpha$ is some
+type and \lean{p} has type \lean{$\alpha\;\to$ Prop}, then 
+\lean{$\forall$x:$\alpha$, p x} is the proposition that every term of type $\alpha$
+satisifes \lean{p} and \lean{$\exists$x:$\alpha$, p x} is the proposition that
+at least one term of type $\alpha$ satisfies \lean{p}. $\forall$ is a dependent
+function, so the type of the output depends on the input of the function; 
+a term of type \lean{$\exists$x:$\alpha$, p x} is a function from
+a term \lean{x} of type $\alpha$ to a proof of \lean{p x}. In Lean,
+\lean{Exists} has type \lean{($\alpha\to$Prop)$\to$Prop}. The introduction
+rule \lean{Exists.intro} has dependent type, so for any \lean{x:$\alpha$},
+then \lean{Exists.intro x} has type \lean{p x$\to$Exists p}. The elimination
+rule \lean{Exists.elim} has type 
+\lean{($\exists$ x, p x)$\to$($\forall$ a : $\alpha$, p a $\to$ b)$\to$b}, essentially
+saying that if \lean{b} is implied by any term which satisfies \lean{p}, then 
+\lean{b} is implied by the existence of a term which satisfies \lean{p}.
 
-\section{Spring 2023}
+\subsection{Are "to be" are "not to be" the only options?}
 
-Over the Winter break, it was confirmed by the University of Arizona
-mathematics department that Dr. Cherkis would teach a graduate class
-in the coming spring, Math 529: Proof Writing and Proof Checking with
-a Computer. Furthermore, I was accepted as a Teaching Assistant for
-this class. This class gave me the opportunity to discern how 
-approachable formalization of Mathematics in Lean is in an actual
-classroom environment. During this semester, I also began writing 
-this Honors thesis, and I finished working on the code library
-which introduces students to Lean. 
+Using the the Curry-Howard Isomorphism and defining logical connectives
+with introduction and elimination rules creates a system of logic which
+is almost as expressive as classical logic, but it has a few shortcomings.
+It's not possible to prove \lean{P $\vee\lnot$ P} for an arbitrary proposition \lean{P}
+with constructive logic, the logic we have been using in Lean thus far.
+Lean introduces three axioms in order to prove the law of the
+excluded middle: propositional extensionality, functional
+extensionality, and an axiom of choice. Propositional extensionality is the
+axiom that equivalent propositions are entirely equal, functional extensionality
+is an axiom stating any two functions which return the same outputs for any
+given input are entirely equal, and the choice axiom is a function which produces
+an term of an arbitrary type $\alpha$ given that $\alpha$ is a nonempty
+type. Then using Diaconescu's theorem, it's possible to show that for any
+proposition \lean{P}, either \lean{P} or \lean{$\lnot$P} is true. 
 
-\subsection{Finishing the library}
+The code library doesn't dwell very long on the differences between 
+constructive and classical logic, nor does it discuss the measures
+taken by the Lean library to extend its expressive capabilities to 
+cover classical logic. The library is geared towards an audience of 
+undergradute mathematics majors, so most of the time is spent developing
+their understanding of classical logic.
 
-My original plan for the project
-included a subsection in the Set Theory chapter of the library for
-cardinality which would cover the explicit definitions of finiteness, 
-countability, and uncountability, but after several weeks of work on 
-the code without any forward progress, I decided to cut cardinality
-from the code library. The first roadblock I encountered trying to
-formalize Munkres' approach to cardinality was a paralysis of possibility, 
-since Lean has finiteness defined for sets and types, each of which are
-useful in select situations. Mathlib has the type \lean{Finset}, which is 
-built atop Lean's programming infrastructure for lists, so all terms 
-of type \lean{Finset} are constructed explicitly by enumerating their 
-elements. This extensional finite set construction makes proving theorems about
-cardinality all but trivial, but requires some type of external means
-to interpret intensionally defined sets as \lean{Finset}s. Mathlib also 
-has the type \lean{Fin : Nat $\to$ Type} and the 
-predicate \lean{Finite : Type $\to$ Prop}. For \lean{n : Nat}, 
-\lean{Fin n} is a subtype of \lean{Nat} consisting of all natural numbers
-less than \lean{n}. \lean{Finite} is defined in terms of \lean{Fin}, where
-a type is \lean{Finite} if there exists a bijective function from
-that type to some \lean{Fin n}. This approach to finiteness matches the formal
-approach described by Munkres, but requires introducing extraneous concepts
-from the Mathlib library used for the construction of \lean{Finite}, namely
-\lean{Equiv} and \lean{Subtype}. I attempted writing some files in the code
-library relying on each approach, since \lean{Finset} is actually used 
-later on in topology where finite subcovers and finite intersections are 
-concerned, but only \lean{Finite} lends itself to the formal proofs of
-the uniqueness of cardinality and so on. \lean{Finite} is also most similar
-to how countability and uncountability are defined in Mathlib, so it provides
-a better segue. However, I was met with another significant hurdle when trying
-to prove that cardinality is unique using \lean{Finite}. Extending a function's 
-domain to a larger type requires using Lean's if-then-else logic, which
-is tricky to use in tactic proofs. Even if the if-condition is met by 
-one of the hypotheses, some elbow grease is necessary to convince Lean to
-simplify the if-then-else expression. This felt like an unreasonable onus 
-to place upon students learning Lean and set theory for the first time, so 
-I spent several hours searching for a workaround, but to no avail. 
+\section{Set Theory}
 
-Ultimately,
-I decided to scrap the Countability section, for the sake of producing a 
-cohesive code library before the end of the semester. Consequently, I also
-needed to drop the Compactness section of the Topology chapter of
-the code library. Due to time pressure, I pared down the Topology chapter
-even further, leaving only the first section to be written. By April 2024, 
-I had finished writing all the remaining code within the limited scope, 
-including solutions for all the exercises within the code library.
+The structure of the Set Theory section of the code library is modeled after 
+\textit{Topological Spaces} by James Munkres and 
+\textit{An Introduction to Proof through Real Analysis} by Trench, along with
+some influence from the undergraduate course I took at the University of Arizona
+in Formal Proof-Writing. The code library begins with a discussion of basic
+set theory, then has subsections for Relations, Induction, and Cardinality. 
+Induction is introduced here rather than in the opening logic section of the 
+library because it requires more type theory to understand how induction is
+implemented in Lean. As students work through the code library for set theory,
+they will also be learning bits and pieces of type theory and how type theory
+is used in Lean. 
 
-\subsection{Insights as a TA}
+\subsection{Fundamentals of Set Theory}
 
-Dr. Cherkis constructed a curriculum for the graduate level course 
-which spent the first two months leading students through the first 6
-chapters of \textit{Mathematics in Lean}, then took a handful of weeks to 
-guide students through my code library, before returning to finish 
-MIL in April. The class met twice weekly for 75 minutes, and a typical class
-session spent about 20 minutes on lecture, and the remaining time dedicated
-to individual or paired work on students' computers with Lean exercises. During
-the group and individual work time, Dr. Cherkis and I helped students upon 
-request, clarifying concepts or quirks of Lean.
+The first section of the Set Theory chapter in the code library is 
+a speedy introduction to Set Theory and a referral to chapter 4 of
+MIL. Lean identifies sets with predicates on a type, i.e. a map
+\lean{p : X $\to$ Prop} corresponds to the set \lean{S : Set X} given by
+\lean{x : X | p x}. And given a set \lean{S : Set X}, the corresponding
+predicate is a map \lean{p : X $\to$ Prop := $\lambda$ x $\mapsto$ x $\in$ S}. 
+Since sets are defined in terms of types, there is also a set which contains 
+all terms of the given type, which Lean denotes \lean{Set.univ}.
 
-\subsection{Future Development}
+After providing readers with enough set theory background to go read 
+MIL chapter 4, the code library provides several illustrative exercises for
+students to complete, some of which are adapted from MIL and some of which I 
+created. One significant benefit of using Lean to learn mathematics is that
+definitions can be accessed instantly, so although MIL doesn't define 
+surjectivity or injectivity, students can jump to their definitions in Lean.
+Two of the problems which I wrote explicitly require proving that a function is
+injective or surjective, and students can decompose the definition using the
+tactic \lean{dsimp[Surjective]} or \lean{dsimp[Injective]}.
+
+The set theory also covers Cartesian products and arbitrary unions, since
+both will be critical for the topology chapter to come.
+
+\subsection{Relations}
+
+Relations are implemented in Lean as maps \lean{r : X $\to$ X $\to$ Prop}. The 
+main relations discussed in this section were order and equivalence relations,
+beginning with an introduction to bundling in Lean. Many objects in 
+mathematics are characterized not just by the sets or functions themselves,
+but also by the properties they satisfy. For example, an equivalence relation
+is not just any relation on a type, but a relation which is also reflexive, 
+symmetric, and transitive. Thus the object of an equivalence relation is really
+4 things: the relation itself and 3 properties of that relation. Lean accomplishes
+this bundling of several types into a single type with structures and typeclasses.
+A structure in Lean is a type with a constructor which has all the fields
+as arguments, and elimination functions which extract the individual fields.
+\begin{lstlisting}
+    structure <name> <parameters> <parent-structures> where
+    <constructor> :: <fields>
+\end{lstlisting}
+For example, consider how the \lean{Equivalence} relation is expressed in Mathlib:
+\begin{lstlisting}
+    structure Equivalence {$\alpha$ : Type} (r : $\alpha\to\alpha\to$ Prop) : Prop where
+    refl  : $\forall$ x, r x x
+    symm  : $\forall$ {x y}, r x y $\to$ r y x
+    trans : $\forall$ {x y z}, r x y $\to$ r y z $\to$ r x z
+\end{lstlisting}
+Thus the structure \lean{Equivalence} is a bundle of 3 predicates on a given
+relation \lean{r}: reflexivity, symmetry, and transitivity.
+
+Lean also has a more sophisticated system of \textbf{typeclasses}, which are
+structures around which Lean has automation infrastructure. Typeclasses use 
+almost the same syntax as structures, aside from the keyword \lean{class} in
+place of \lean{structure}. The facet of typeclasses explained in the relations
+section of the code library is \textit{typeclass inference}, which is the
+mechanism Lean uses to infer instances of typeclasses without the programmer
+explicitly providing the instances. Lean keeps track of the most recent scoped 
+definition of each particular instance, so instances don't need to described
+with specific variable names to be used. 
+
+My section on relations investigates two main types of relations: order relations like
+preorders, partial orders, well-ordering, and linear orders; and equivalence relations. Although there is 
+plenty of mathematics to be done with other relations, the aim of the code library is to
+provide students with a sufficient mathematical foundation to begin exploring topology.
+The order topology and the quotient topology are essential to the study of basic topology, 
+so I describe only the requisite information about relations for those studies. Since the order 
+topology relies on intervals and rays in a linear order, the code library explores the orders
+which are weaker than linear ordering but sufficient for intervals and suprema. Similarly, 
+the quotient topology requires a definition of a quotient, so the code library introduces equivalence
+relations and builds up to how quotients are defined in Lean.
+
+The subsection on order relations introduces readers to the strict order, then preorders
+and partial orders. Lean defines the set of upper and lower bounds of a set using only 
+the preorder, but I chose to work with the confines of a partial order so that the 
+bounded sets have a unique supremum and infimum. Then I introduce readers to the lexicographic
+order, which will be useful later in topology. The next file on order relations delves into 
+open and closed intervals and rays. Lean defines 8 different intervals (which also include rays) : 
+\lean{Ioo}, \lean{Ioc}, \lean{Ioi}, \lean{Ico}, \lean{Icc}, \lean{Ici}, \lean{Iio}, and \lean{Iic}.
+The 3-letter names can be thought of as acronyms where the first word is "interval", and the 
+second and third words are from the set {"open", "closed", "infinite"}. The second word of the 
+acronym describes the lower bound of the interval (or ray) and the third word describes the 
+upper bound. The bound is a strict inequality, a non-strict inequality, or nonexistent for
+"open," "closed," and "infinite" respectively. This is why there are only 8 intervals described, 
+as the interval which has no upper or lower bound is just the entire set. The interval file then
+introduces the reader to immediate successors and predecessors defined in terms of intervals.
+
+The final subsection is dedicated to the equivalence relation, and is split into a file 
+explaining the equivalence relation and a file explaining the quotient construction.
+Lean has a structure \lean{Equivalence} which was shown above, and the code library
+introduces the reader to that structure first, showing an example of a relation
+which has all three properties: 
+\begin{lstlisting}
+    def parity (x y : $\mathbb{Z}$) : Prop := $\exists$ k, x - y = 2 * k
+\end{lstlisting}
+I then introduce readers to the typeclass \lean{Setoid}, which allows for the
+use of the infix \lean{$\approx$} and will be needed later for quotients. The 
+remainder of the file shows students how equivalence classes are defined and 
+describes how equivalence classes are set partitions. Knowing now that equivalence
+classes subdivide a type, the next file smoothly introduces the \lean{Quotient} type, 
+where the terms are equivalence classes.
+
+Lean actually has two quotient types, \lean{Quot} and \lean{Quotient}, where the
+latter is built atop the former. \lean{Quot} is a strange kind of quotient which
+is built from \textbf{any} relation, so the relation need not be an equivalence.
+The traditional quotient is built in Lean as 
+\lean{Quotient : Setoid $\alpha$ $\to$ Type}, so a new \lean{Quotient} type can 
+be created by providing an instance of \lean{Setoid $\alpha$} for some type 
+$\alpha$. The file then explains how to use this new type and how the quotient
+type relates to the equivalence relation on the base type, specifically by
+leading readers through a (mostly) worked example, the integers modulo 3.
+I first describe a relation 
+\lean{eqv (a b : $\mathbb{Z}$) : Prop := $\exists$ k, a-b = 3*k}, then
+actually \textbf{prove} that \lean{eqv} is an equivalence relation. From there,
+I construct an instance \lean{ZSetoid : Setoid $\mathbb{Z}$} and define the quotient
+type \lean{Zmod3 := Quotient ZSetoid}. Since the terms of \lean{Zmod3} are 
+equivalence classes of integers, Lean should provide a means of constructing
+a term explicitly by providing an integer, and Leans does this with the function
+\lean{Quotient.mk (s : Setoid $\alpha$) (a : $\alpha$) : Quotient s}. Lean also 
+supplies the following useful tools for interacting with the quotient
+type (and many more not listed here) :
+\lean{Quotient.exists\_rep} posits that every term of the quotient type is
+equal to the equivalence class of some term in the base type, 
+\lean{Quotient.eq} states that two terms of the base type are equivalent if
+and only if the equivalence classes of those terms are equal in the quotient type,
+\lean{Quotient.lift} creates a function from the quotient type to any other type 
+$\beta$ when provided some function from the base type to $\beta$ which
+maps equivalent terms to the same output, and 
+\lean{Quotient.lift\_mk} asserts that the function created from \lean{Quotient.lift}
+maps the equivalence class to the same term that the original function would
+map any representative of that equivalence class. With these theorems and some more, 
+I guide readers through a proof that no perfect square of integers is two more than
+any multiple of three.
+
+\subsection{Induction}
+
+Induction is a fundamental idea to Lean, since the language makes uses of
+"inductive types." Proof by induction is also a critical idea for aspiring 
+mathematicians to learn, as it's a frequently used proof technique. This
+section of the code library first introduces readers to the mathematical notions
+of strong and weak induction, then refers readers to \textit{Mathematics in Lean},
+before returning with examples of induction and recursive definitions. Chapter 
+5 section 2 of MIL was indispensible to my understanding of inductive types in 
+Lean, and is accessibly-written enough for the undergraduate audience of this
+code library, so I decided to send readers to that text directly rather than 
+novicely rewriting the source material. 
+
+The code library just builds atop the explanation in MIL, with more explicit 
+examples and exercises to illustrate and practice the use of induction, 
+inductive types, and recursive definitions. There is also a brief example
+which proves the one missing step from a proof in the previous Quotients 
+subsection.
+
+\section{Topology}
+
+This chapter of the code library is modeled more explicitly after 
+\textit{Topological Spaces} by James Munkres, but also includes
+some influence from \textit{Topologies and Uniformities} because 
+the Lean library Mathlib uses \textit{Topologies and Uniformities}.
+This final section introduces the idea of a topology, a topological basis,
+and a handful of methods for constructing topologies. Unlike the primary 
+resource for topology in Lean, Chapter 9 of \textit{Mathematics in Lean}, 
+this section places minimal focus on filters and metric spaces. In fact, 
+this code library bears no mention of metric spaces, which ought to
+be remedied should the code library be expanded to cover more of topology.
+The framework for topology in Mathlib uses filters extensively, which
+are useful for codifying limits and continuity at a point, but I decided 
+the filter approach to topology is less intuitive than the basis 
+approach for a first introduction to an undergraduate student.
+
+\subsection{Topology and Bases}
+
+The first file introduces the formal definitions of a topology and a 
+topological basis, then scaffolds a proof that the collection of arbitrary
+unions of basis sets is a topology. Just these two definitions require 
+knowledge of much that was introduced in the previous set theory chapter:
+structures, typeclasses, the axiom of choice, and arbitrary unions. Lean
+uses a typeclass \lean{TopologicalSpace} to encode topologies, which can 
+make comparing two or more topologies difficult, since instances usually
+go unnamed in Mathlib. Thus to compare a set under two different topologies
+requires explicitly providing variable names for each topology into whichever
+theorems from Mathlib are used, otherwise Lean will infer the most recently 
+defined instance of a suitable topology as an argument. Despite this mild 
+annoyance, the typeclass framework is much more suitable in the common context 
+where a set has a standard topology which would be irritating to explicitly 
+derive at each stage. The choice to represent topologies with typeclasses also 
+benefits ease of use of hierarchies, so Hausdorff spaces and Metric spaces can 
+simply be defined atop the \lean{TopologicalSpace} typeclass.
+
+The second file expands upon the definition of "open" and "closed" sets, 
+demonstrates that the finite union and arbitrary intersection of closed sets
+remain closed, and introduces the definitions and some properties of the 
+interior, closure, and boundary of a set.
+
+The remaining three files cover the product, order, and subspace topologies,
+as they are implemented in Lean. 

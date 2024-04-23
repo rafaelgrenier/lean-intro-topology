@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Main.aux
+A level-1 auxiliary file: Chapter1/chapter1.aux
+A level-1 auxiliary file: Chapter2/chapter2.aux
+A level-1 auxiliary file: Chapter3/chapter3.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: mybibliography.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing publisher in MIL
+Warning--missing publisher in TPiL
+Warning--missing publisher in Macbeth
+Warning--missing publisher in Buzzard
+
+Done.
+You've used 4 entries,
+            4087 wiz_defined-function locations,
+            846 strings with 7887 characters,
+and the built_in function-call counts, 1746 in all, are:
+= -- 119
+> -- 34
+< -- 0
++ -- 16
+- -- 8
+* -- 96
+:= -- 321
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 8
+duplicate$ -- 114
+empty$ -- 185
+format.name$ -- 10
+if$ -- 376
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 24
+newline$ -- 43
+num.names$ -- 4
+pop$ -- 70
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 149
+stack$ -- 0
+substring$ -- 0
+swap$ -- 70
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 4
+warning$ -- 4
+while$ -- 4
+width$ -- 5
+write$ -- 62
+(There were 4 warnings)
