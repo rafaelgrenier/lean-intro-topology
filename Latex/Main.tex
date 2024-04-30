@@ -1,48 +1,24 @@
-\documentclass[11pt]{book}
+\documentclass[11pt, oneside]{book}
 \usepackage{geometry}       
-\geometry{letterpaper}   
 \usepackage[parfill]{parskip} 
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{verbatim}
-\usepackage{epstopdf}
+\usepackage{emptypage}
 \usepackage{courier}
+\usepackage{blindtext}
 \usepackage{listings}% http://ctan.org/pkg/listings
-\lstset{
-  basicstyle={\small\ttfamily},
-  mathescape
-}
-\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
-
 \usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=blue,
             citecolor=blue, urlcolor=blue]{hyperref}
+\geometry{letterpaper}   
+\lstset{basicstyle={\small\ttfamily},mathescape}
+\pagenumbering{arabic}
 
-%includeonly{Chapter1}
-
-
-
-\newtheorem{theorem}{Theorem}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{definition}{Definition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{exercise}{Exercise}
-\newtheorem{remark}{Remark}
-\newtheorem{example}{Example}
-\newtheorem{warning}{Warning}
-
-
-\def\U{\ensuremath {\cal U}}
-\def\S{\ensuremath {\cal S}}
-\def\V{\ensuremath {\cal V}}
-\def\R{\ensuremath {\cal R}}
-\def\tr{\ensuremath {\mbox{tr}}}
 \newcommand{\lean}[1]{\texttt{#1}}
 
 
-
-
 % ------------------- Title and Author -----------------------------
-\title{Honors Thesis Project}
+\title{Lean-Intro-Topology}
 \author{John Rafael Matteo Munoz-Grenier}
 \begin{document}
 
@@ -50,19 +26,31 @@
 \frontmatter
 \maketitle
 
+\newpage
+{
+  \vfill
+  \LARGE 
+  \textbf{Abstract}
+  \normalsize
+
+
+  This paper describes my senior honors thesis project:
+  an interactive and thoroughly commented Lean code library designed
+  to teach undergraduate students the basics of formal proof-writing, 
+  set theory, and point-set topology. This paper will motivate the need 
+  for such a library, explain its structure, and describe the lessons 
+  learned throughout the course of the project. By the end of this paper,
+  the reader should have an understanding of how Lean works and its
+  potential utility in mathematics education.
+
+  \vfill
+}
 \tableofcontents
 
+\mainmatter
 \include{Chapter1/chapter1}
-
 \include{Chapter2/chapter2}
-
 \include{Chapter3/chapter3}
-
-%\include{Chapter4/chapter4}
-
-%\include{Chapter5/chapter5}
-
-
 \bibliographystyle{IEEEtran}
 \bibliography{mybibliography}
 
