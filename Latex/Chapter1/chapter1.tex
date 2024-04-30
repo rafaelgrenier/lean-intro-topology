@@ -17,10 +17,19 @@ poorly-written proof. Students may also have difficulty
 determining how much detail is sufficient for the proofs they
 write, if they even notice the holes in their proofs. For 
 both instructors and students, the ambiguity in what constitutes
-a "formal proof" adds work outside of the mathematical and 
+a ``formal proof'' adds work outside of the mathematical and 
 logical focus of the course.
 
-Lean uses dependent type theory and the Curry-Howard isomorphism 
+Theorem provers and proof assistants can help resolve this ambiguity,
+using the determinism of computing. Theorem provers verify that
+the proofs encoded in the prover are sound, namely that they follow
+from the axioms and rules of inference. The rigorous framework
+of formal mathematics is thus supported by automation which can, 
+for students, provide immediate feedback, 
+and for instructors, grade instantly and without bias.
+
+One such theorem prover, Lean,
+uses dependent type theory and the Curry-Howard isomorphism 
 to build a programming language capable of defining and proving 
 theorems in Mathematics. Lean stands out when compared to other
 theorem provers like Coq and Isabelle due to Lean's
@@ -33,7 +42,7 @@ automation and type inference. Lean’s large user base and
 committed development team have also created a variety of 
 supplemental resources for new users to learn Lean and for 
 experienced users to reference, most notable of which is 
-\textit{Mathematics In Lean}.
+\textit{Mathematics In Lean} \cite{MIL}.
 
 \textit{Mathematics In Lean} (MIL) was the primary resource I used 
 to learn Lean, and I found the textbook to be a smooth
@@ -49,6 +58,24 @@ students the basics of formal proof-writing, set theory, and topology
 with the assistance of Lean. The code library covers first-order logic,
 introductory set theory, order and equivalence relations, induction, and
 some point-set topology. 
+
+The section on first-order logic introduces propositions, 
+logical connectives, predicates, quantifiers, and just enough
+type theory to begin working with Lean. The following section on
+set theory introduces sets, set operations like union and intersection,
+functions, and cartesian products.
+
+The section on relations considers two kinds of relations:
+order relations and equivalence relations. The order relations
+discussed are preorder, partial order, lexicographic order, and 
+strict order. The introduction to equivalence relations transitions 
+to equivalence classes, set/type partitions, and quotients. The section
+on induction brings in weak and strong induction, as well as inductive
+types and recursive definitions.
+
+The final section on point-set topology introduces the definition of a 
+topology, a topological basis, and open/closed sets. Then the section
+pivots to the order, subspace, and product topologies.
 
 This code library was my honors thesis project, and this paper
 will explain the structure of the code library, the process of

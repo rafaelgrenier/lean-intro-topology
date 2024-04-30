@@ -9,28 +9,29 @@ This honors thesis project began in June 2023, stemming from
 an idea Dr. Sergey Cherkis had for automating the grading
 process in his topology class. Over the summer, I endeavored
 to learn Lean and become comfortable using Mathlib. In the Fall,
-I began building the library, and I finished in the Spring.
+I began building the library, and I finished in the Spring of 2024.
 
 \section{Summer 2023}
 
 Lean has many resources available to newcomers, so I began
-by tackling the introductory textbooks Mathematics In Lean \cite{MIL} and
-Theorem Proving In Lean \cite{TPiL}. Mathematics In Lean is peppered with
+by tackling the introductory textbooks \textit{Mathematics In Lean} \cite{MIL} and
+\textit{Theorem Proving In Lean} \cite{TPiL}. MIL is peppered with
 exercises for the reader, which I dutifully completed. When
-I read through MIL, it was still written for Lean3, and I only 
+I first read through MIL, it was still written for Lean3, and I only 
 covered the sections introducing Lean itself, set theory, and
 topology. When MIL was updated for Lean 4 in August, I re-read the
 sections of the text which were substantially (not just syntactically)
 changed from the previous version.
 
-The topology section of Mathematics in Lean was sparse, and took 
+The topology section of Mathematics in Lean was unlike any other
+introduction to topology I had ever seen, as it took 
 an approach to Topology centered around filters rather than bases. 
 The filter construction of topology works well for formalization 
 because there are fewer cases to consider, particularly
-in the realm of limits. Just looking at limits of functions between
-metric spaces, according to MIL, there are 512 different cases. This 
-plurality of slightly different cases poses little problem for an 
-informal system, since one can demonstrate a particular case and
+in the realm of limits. Just looking at limits of a composition of two 
+functions between metric spaces, according to MIL, there are 512 different 
+cases. This plurality of slightly different cases poses little problem 
+for an informal system, since one can demonstrate a particular case and
 hand-wave that the other cases are similar. For formalization, 
 either 512 cases must be encoded in Lean, or another system is required,
 so Mathlib uses filters. The remainder of MIL's topology section
@@ -45,7 +46,8 @@ only taking care to delicately explain how those ideas are used in Lean.
 I had also just taken a semester-long course in topology, so I was particularly 
 taken aback that the only resource for topology in Lean was so unapproachable.
 This became the inspirition for a new direction with my honors thesis project:
-writing a code library for formalizing topology in Lean which is more accessible.
+writing a code library for formalizing topology in Lean which is more accessible,
+and based on a conventional approach like that of Munkres' \textit{Topological Spaces}.
 
 During the summer, I also read Theorem Proving in Lean 3, and then
 skimmed Theorem Proving in Lean 4 when it was released later in the 
@@ -55,29 +57,29 @@ on the type theory used to formalize mathematics. My impression upon reading bot
 texts was that MIL expects more mathematical background knowledge from the reader
 and TPiL expects more programming savviness. I also read a bit of 
 \textit{Functional Programming in Lean}, but ultimately sidelined that
-textbook because it was less relevant to my goals for the project. 
+textbook because it was less relevant to my goals for this project. 
 
 \section{Fall 2023}
 
 In Late August, I began to work through the Munkres textbook
-"Topological Spaces" with a focus on identifying which parts
+\textit{Topological Spaces} with a focus on identifying which parts
 of the textbook were more or less challenging to formalize. 
 Starting in September, I pivoted to working on the first section
 of my instructional repository, Logic in Lean. I spent the first few 
-weeks of september deciding how to structure the introduction to 
+weeks of September deciding how to structure the introduction to 
 formal logic, which ultimately culminated in the current path
 starting with Propositions, truth and falsity, then leading through
 implication, disjunction, conjunction, negation, and the 2 quantifiers.
-I actually began writing code and comments in late september, and by
-mid-october I had written files explaining proofs, proposition, and
+I actually began writing code and comments in late September, and by
+mid-October I had written files explaining proofs, proposition, and
 implication; true, false, introduction rules, and elimination rules;
 negation; conjunction and disjunction; and the existential and 
 universal quantifiers. This was also the time when I began backing 
-my files up on github. The remainder of the semester was spent 
+my files up on Github. The remainder of the semester was spent 
 continuing to flesh out the library, adding a section on set theory
 and a section on Topology.
 
-\section{Spring 2023}
+\section{Spring 2024}
 
 Over the Winter break, it was confirmed by the University of Arizona
 mathematics department that Dr. Cherkis would teach a graduate class
@@ -106,7 +108,7 @@ elements. This extensional finite set construction makes proving theorems about
 cardinality all but trivial, but requires some type of external means
 to interpret intensionally defined sets as \lean{Finset}s. Mathlib also 
 has the type \lean{Fin : Nat $\to$ Type} and the 
-predicate \lean{Finite : Type $\to$ Prop}. For \lean{n : Nat}, 
+predicate \lean{Finite : Type $\to$ Prop}. For a natural number \lean{n}, 
 \lean{Fin n} is a subtype of \lean{Nat} consisting of all natural numbers
 less than \lean{n}. \lean{Finite} is defined in terms of \lean{Fin}, where
 a type is \lean{Finite} if there exists a bijective function from
@@ -116,7 +118,7 @@ from the Mathlib library used for the construction of \lean{Finite}, namely
 \lean{Equiv} and \lean{Subtype}. I attempted writing some files in the code
 library relying on each approach, since \lean{Finset} is actually used 
 later on in topology where finite subcovers and finite intersections are 
-concerned, but only \lean{Finite} lends itself to the formal proofs of
+concerned, but only \lean{Finite} easily lends itself to the formal proofs of
 the uniqueness of cardinality and so on. \lean{Finite} is also most similar
 to how countability and uncountability are defined in Mathlib, so it provides
 a better segue. However, I was met with another significant hurdle when trying
@@ -134,7 +136,7 @@ cohesive code library before the end of the semester. Consequently, I also
 needed to drop the Compactness section of the Topology chapter of
 the code library. Due to time pressure, I pared down the Topology chapter
 even further, leaving only the first section to be written. By April 2024, 
-I had finished writing all the remaining code within the limited scope, 
+I had finished writing all the remaining code within this limited scope, 
 including solutions for all the exercises within the code library.
 
 \subsection{Insights as a TA}
@@ -149,26 +151,28 @@ to individual or paired work on students' computers with Lean exercises. During
 the group and individual work time, Dr. Cherkis and I helped students upon 
 request, clarifying concepts or quirks of Lean.
 
+\textbf{[Transition to some difficulties students encountered]}
+
 As the students were beginning to learn Lean, they often stumbled with
 tactics, specifically the \lean{apply} tactic, which works like so:
 if you have a goal \lean{$\vdash $Q} and a hypothesis \lean{h:P$\to$Q}, 
-then writing "\lean{apply h}" will reduce the goal to \lean{$\vdash$P}. 
+then writing ``\lean{apply h}" will reduce the goal to \lean{$\vdash$P}. 
 Students tended to forego reducing the goal and instead wrote 
-"\lean{apply hP}" where they had \lean{hP:P} as a hypothesis. This common
+``\lean{apply hP}" where they had \lean{hP:P} as a hypothesis. This common
 mistake may represent that students aren't viewing known implications as
 propostions themselves which require proving and specifying, just like
 any other proposition. The \lean{apply} tactic also encourages a sort of
 backwards proof, where the goal is continually reduced until the goal 
 follows directly from the hypotheses. 
 
-Another gripe students had with Lean was the naming convention, or lack
+Another gripe students had with Lean was the theorem naming convention, or lack
 thereof. Each theorem in the extensive Mathlib library has a unique
-variable name, and while most theorems use the same naming convention, that
+name, and while most theorems use the same naming convention, that
 convention is not made explicit in \textit{Mathematics in Lean}. In general, 
 a theorem which proves \lean{prop2} from hypothesis \lean{prop1} is named
 \lean{prop2\_of\_prop1}, but the exceptions are likely more numerous than
-the rule. Mathlib uses certain canonical abbreviations, so "less than" is
-always abbreviated \lean{le} and "multiplication" is \lean{mul}. Additionally,
+the rule. Mathlib uses certain canonical abbreviations, so ``less than" is
+always abbreviated \lean{le} and ``multiplication" is \lean{mul}. Additionally,
 Lean uses dot notation for accessing fields of a structure but also
 for namespace scope, so \lean{TopologicalSpace.isOpen} could be 
 interpreted as a field within the structure \lean{TopologicalSpace} or as
@@ -226,10 +230,10 @@ hopeful for the prospects of an undergraduate-level course which
 follows my code library. There are a few other courses in other
 universities which have successfully done what this project aims to do:
 teach undergraduate students how to reason mathematically and write proofs
-using Lean. Heather Macbeth wrote an excellent online textbook, 
+using Lean. Dr. Heather Macbeth wrote an excellent online textbook, 
 \textit{The Mechanics of Proof} \cite{Macbeth}, 
 which accompanies her course at Fordham University. 
-Kevin Buzzard of Imperial College London also teaches a course on 
+Dr. Kevin Buzzard of Imperial College London also teaches a course on 
 formalizing mathematics using Lean \cite{Buzzard}, 
 which he has taught for a couple of 
 semesters to undergraduate math students. 
@@ -238,7 +242,7 @@ For my code library to be a sufficient resource for an undergraduate course,
 it still requires some more work; the code library needs an accompanying 
 textbook, human language proofs, and a grading pipeline. Ideally, the code
 library would be less commented, and the content of the comments would be moved
-over to a textbook, similar to how Mathematics in Lean has both a pdf file
+over to a textbook, similar to how \textit{Mathematics in Lean} has both a pdf file
 and a code library. Then that textbook could also contain several proofs which
 are written both in Lean and in human language, so students might also
 learn how to write human language proofs and not just Lean proofs. Lastly, 
@@ -250,8 +254,9 @@ work from both instructor and student.
 My code library is also missing a subsection of Set theory which discusses
 finite, infinite, countable, and uncountable sets. The library could also
 reach much further into topology, covering at least continuity, compactness, and
-connectedness. The introduction section of the library could also be improved 
-by taking more time on tactics, particularly \lean{apply} and \lean{rewrite}.
+connectedness. With the hindsight of TAing this course, the introduction section 
+of the library could also be improved by taking more time on tactics, 
+particularly \lean{apply} and \lean{rewrite}.
 
 Once my code library has been upgraded enough to be used as a reference for
 an undergraduate course, there are myriad possibilities for uses.
@@ -267,3 +272,8 @@ for tactics which explains what all the tactics do, and that Mathlib could
 use some extra document which can help with searching through the library. 
 The tools I have learned to find specific theorems in Mathlib were hard-fought,
 but they don't have to be.
+
+\textbf{[Add Functional Programming to Bibliography]}
+\textbf{[Add Munkres' Topological Spaces to Bibliography]}
+\textbf{[Add James' Topologies and Uniformities to Bibliography]}
+\textbf{[Add My code library to Bibliography]}
