@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.19)  29 APR 2024 18:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.19)  29 APR 2024 21:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -331,13 +331,18 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ] (./Main.toc
-Overfull \hbox (0.66916pt too wide) detected at line 16
+Overfull \hbox (0.66916pt too wide) detected at line 13
  []\OT1/cmr/m/n/10.95 xvii
  []
 
 
-Overfull \hbox (0.66916pt too wide) detected at line 17
- []\OT1/cmr/m/n/10.95 xvii
+Overfull \hbox (3.71083pt too wide) detected at line 14
+ []\OT1/cmr/m/n/10.95 xviii
+ []
+
+
+Overfull \hbox (3.71083pt too wide) detected at line 15
+ []\OT1/cmr/m/n/10.95 xviii
  []
 
 )
@@ -368,34 +373,37 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 
 
 {c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}] [8]
-Overfull \hbox (7.35652pt too wide) in paragraph at lines 103--106
+Overfull \hbox (7.35652pt too wide) in paragraph at lines 122--125
 []\OT1/cmr/m/n/10.95 is de-noted $\OMS/cmsy/m/n/10.95 _$\OT1/cmr/m/n/10.95 , so for \OT1/pcr/m/n/10.95 P Q : Prop\OT1/cmr/m/n/10.95 , then \OT1/pcr/m/n/10.95 P $\OMS/cmsy/m/n/10.95 _$ \OT1/pcr/m/n/10.95 Q : Prop
  []
 
 
-Overfull \hbox (14.18784pt too wide) in paragraph at lines 109--111
-[]\OT1/pcr/m/n/10.95 Or.elim : P $\OMS/cmsy/m/n/10.95 _$ \OT1/pcr/m/n/10.95 Q $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 (P $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 R) $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 (Q $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 R) $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 R \OT1/cmr/bx/n/10.95 [This re-quires some
+Overfull \hbox (10.3984pt too wide) in paragraph at lines 128--132
+[]\OT1/pcr/m/n/10.95 Or.elim : P $\OMS/cmsy/m/n/10.95 _$ \OT1/pcr/m/n/10.95 Q $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 (P $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 R) $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 (Q $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 R) $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 R\OT1/cmr/m/n/10.95 . This elim-i-na-tion rule
  []
 
 
-Overfull \hbox (3.98036pt too wide) in paragraph at lines 118--121
+Overfull \hbox (3.98036pt too wide) in paragraph at lines 139--142
 []\OT1/pcr/m/n/10.95 Iff.intro : (P $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 Q) $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 (Q $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 P) $\OMS/cmsy/m/n/10.95 !$ \OT1/pcr/m/n/10.95 P $\OMS/cmsy/m/n/10.95 $$ \OT1/pcr/m/n/10.95 Q\OT1/cmr/m/n/10.95 , so for proofs \OT1/pcr/m/n/10.95 hp : P
  []
 
-[9{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [10] [11] [12] [13])
-Overfull \hbox (4.73453pt too wide) in paragraph at lines 392--57
+[9{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11] [12] [13] [14])
+Overfull \hbox (4.73453pt too wide) in paragraph at lines 428--57
 []\OT1/cmr/m/n/10.95 The re-main-ing three files, \OT1/pcr/m/n/10.95 P3[]product.lean\OT1/cmr/m/n/10.95 , \OT1/pcr/m/n/10.95 P4[]order.lean\OT1/cmr/m/n/10.95 , and \OT1/pcr/m/n/10.95 P5[]subspace.lean
  []
 
-[14]
+[15]
 \openout2 = `Chapter3/chapter3.aux'.
 
- (./Chapter3/chapter3.tex [15
+ (./Chapter3/chapter3.tex [16
 
 
 
 
-] [16] [17] [18] [19]) [20] (./Main.bbl) [21
+] [17] [18] [19] [20] [21]) [22] (./Main.bbl) [23
 
 
 
@@ -408,18 +416,18 @@ Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: E96CE8B285D9B6543BF53241910B7D8B;2638.
  ) 
 Here is how much of TeX's memory you used:
- 11529 strings out of 474174
- 174974 string characters out of 5749676
+ 11531 strings out of 474174
+ 174993 string characters out of 5749676
  1944460 words of memory out of 5000000
  33601 multiletter control sequences out of 15000+600000
  570671 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,6n,67p,563b,1049s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on Main.pdf (21 pages, 227113 bytes).
+Output written on Main.pdf (23 pages, 229573 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
- 248 compressed objects within 3 object streams
- 56 named destinations out of 1000 (max. 500000)
+ 310 PDF objects out of 1000 (max. 8388607)
+ 254 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
  145 words of extra memory for PDF output out of 10000 (max. 10000000)
 

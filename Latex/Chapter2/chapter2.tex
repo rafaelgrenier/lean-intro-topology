@@ -13,11 +13,16 @@ false, and every proposition must be either true or false. Next introduced
 are truth tables, and different means of combining propositions into 
 larger propositions. We define the meaning of conjunction by appealing to 
 a truth table, wherein \lean{P $\wedge$ Q} is true if and only if \lean{P} is true 
-and \lean{Q} is true. \textbf{[How does this differ from the way mathematicians write proofs?]}
-Similar constructions define negation, disjunction, and implication. 
+and \lean{Q} is true. Similar constructions define negation, disjunction, 
+and implication. This proof-by-truth-table perspective is used when
+first learning formal logic, but is swiftly discarded as one proceeds
+further into mathematics. Already by the time students learn 
+about the universal quantifier, the truth table is obsolete.
+A conventional foundation for mathematics also uses sets as the 
+fundamental building block, constructing the natural numbers and so 
+forth from the axioms of Zermelo-Fraenkel set theory.
 
-\textbf{[Transition: prop logic with sets to type theory]}
-
+Lean, in contrast, builds its whole world, even its logic, from types. 
 In Lean, every term has some Type, and true-or-false claims have the type 
 \lean{Prop}, which is short for Propositions. Any given term \lean{P} with
 type \lean{Prop} (denoted \lean{P : Prop}) is itself a type, and a term 
@@ -72,7 +77,21 @@ is \lean{$\vdash$ P}. Since it's known, thanks to \lean{h}, that \lean{P} implie
 then proving \lean{P} would suffice to prove \lean{Q}, and the \lean{apply}
 tactic packages that logic into a single line.
 
-\textbf{[Currying]}
+Before we can move on to talk about logic besides implication, there's 
+one more facet of implication to mention: Currying. Without yet defining
+conjuction, we can still write types which have more than one input; If
+I want to create a function with two inputs and only one output,
+like addition on the Natural numbers (which are encoded by the 
+type \lean{Nat : Type}), then my function ``\lean{add}'' will have type 
+\lean{Nat $\to$ (Nat $\to$ Nat)}. This type can be conceptualized by
+filling out the arguments of the multivariable function one at a time, so
+\lean{add : Nat $\to$ (Nat $\to$ Nat)} is a function which takes some
+\lean{Nat} like \lean{3 : Nat} to \lean{add 3 : Nat $\to$ Nat}. Here,
+\lean{add 3} is the function from natural numbers to natural numbers
+which adds three to its input. Then \lean{add 3 6 : Nat} is just the 
+natural number which should be returned from 3+6, which reduces to 9.
+This technique is called ``currying'', and is critical to understanding
+the nect section.
 
 The code library then works through \lean{True}, \lean{False}, \lean{Not}, 
 \lean{And}, \lean{Or}, and \lean{Iff}.
@@ -104,10 +123,12 @@ The code library then works through \lean{True}, \lean{False}, \lean{Not},
     for \lean{P Q : Prop}, then \lean{P $\vee$ Q : Prop} is shorthand for 
     \lean{Or P Q : Prop}. Similar to \lean{And}, \lean{Or} has three total 
     introduction and elimination rules: \begin{itemize}
-        \item \lean{Or.inl : P $\to$ P $\vee$ Q}
-        \item \lean{Or.inr : Q $\to$ P $\vee$ Q}
-        \item \lean{Or.elim : P $\vee$ Q $\to$ (P $\to$ R) $\to$ (Q $\to$ R) $\to$ R} 
-        \textbf{[This requires some explanation]}
+        \item \lean{Or.inl : P $\to$ P $\vee$ Q},
+        \item \lean{Or.inr : Q $\to$ P $\vee$ Q}, and
+        \item \lean{Or.elim : P $\vee$ Q $\to$ (P $\to$ R) $\to$ (Q $\to$ R) $\to$ R}.
+        This elimination rule follows from the principle that to prove any proposition 
+        \lean{R} from a disjunction, one needs to prove that each part of
+        the disjunction implies \lean{R} independently.
     \end{itemize}
     \item[\lean{Iff : Prop $\to$ Prop $\to$ Prop}] is denoted $\leftrightarrow$, so 
     for \lean{P Q : Prop}, then \lean{P $\leftrightarrow$ Q : Prop} is shorthand for 
@@ -176,7 +197,7 @@ their understanding of classical logic.
 
 The structure of the Set Theory section of my code library is modeled after 
 \textit{Topological Spaces} by James Munkres and 
-\textit{An Introduction to Proof through Real Analysis} by Trench, along with
+\textit{An Introduction to Proof through Real Analysis} by Madden and Aubrey, along with
 some influence from the undergraduate course I took at the University of Arizona
 in Formal Proof-Writing, Math 323. My code library begins with a discussion of basic
 set theory, then has subsections for Relations and Induction. 
@@ -188,16 +209,31 @@ is used in Lean.
 
 \subsection{Fundamentals of Set Theory}
 
-\textbf{[Set vs. Type theory, explain |, explain $\lambda$]}
-
 The first section of the Set Theory chapter in the code library is 
 a speedy introduction to Set Theory and a referral to Chapter 4 of
-MIL. Lean identifies sets with predicates on a type, i.e. a map
-\lean{p : X $\to$ Prop} corresponds to the set \lean{S : Set X} given by
-\lean{x : X | p x}. And given a set \lean{S : Set X}, the corresponding
-predicate is a map \lean{p : X $\to$ Prop := $\lambda$ x $\mapsto$ x $\in$ S}. 
+MIL. Sets in Lean are restricted to only contain elements of the 
+same type, so \lean{Set Nat} is the type of all sets which contain
+only natural number elements. Then each individual set \lean{S : Set X}
+is a collection of terms of type \lean{X}, which can also be represented
+by a predicate \lean{p : X $\to$ Prop} by considering the collection
+of terms which the predicate maps to \lean{True}. 
+Thus a map \lean{p : X $\to$ Prop} corresponds to the set 
+\lean{S : Set X} given by \lean{x : X | p x} (the notation Lean uses for 
+a set over terms of type X which satisfy some property, in this case \lean{p}). 
+And given a set \lean{S : Set X}, the corresponding
+predicate is a map \lean{p : X $\to$ Prop := $\lambda$ x : X $\mapsto$ x $\in$ S}. 
+This ``\lean{$\lambda$ \_ : \_ $\mapsto$ \_}'' notation is used for 
+functions in Lean, where the blank space before the colon is the input term, the
+blank after the colon is the type of the input term, and the blank after the
+map symbol is the term outputted by the function. Thus the previous expression, 
+\lean{p : X $\to$ Prop := $\lambda$ x : X $\mapsto$ x $\in$ S}, can be read 
+``\lean{p} is the function of type \lean{X $\to$ Prop} which maps a term
+\lean{x} of type \lean{X} to the proposition that \lean{x} is an element of \lean{S}.''
 Since sets are defined in terms of types, there is also a set which contains 
-all terms of the given type, which Lean denotes \lean{Set.univ}.
+all terms of the given type, which Lean denotes \lean{Set.univ} (This set
+corresponds to the predicate which is always true). Using \lean{Set.univ},
+one can also think of the predicate-set correspondence as
+that between indicator function and the sets they indicate.
 
 After providing readers with enough set theory background to go read 
 MIL chapter 4, the code library provides several illustrative exercises for

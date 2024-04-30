@@ -1,18 +1,18 @@
 \contentsline {chapter}{Introduction}{v}{chapter*.2}%
 \contentsline {chapter}{Structure}{vii}{chapter*.3}%
 \contentsline {section}{\numberline {0.1}Introduction to Lean and Logic}{vii}{section.0.1}%
-\contentsline {subsection}{\numberline {0.1.1}Dependent Types and Qualifiers}{ix}{subsection.0.1.1}%
+\contentsline {subsection}{\numberline {0.1.1}Dependent Types and Qualifiers}{x}{subsection.0.1.1}%
 \contentsline {subsection}{\numberline {0.1.2}Are ``to be" and ``not to be" the only options?}{x}{subsection.0.1.2}%
 \contentsline {section}{\numberline {0.2}Set Theory}{x}{section.0.2}%
-\contentsline {subsection}{\numberline {0.2.1}Fundamentals of Set Theory}{x}{subsection.0.2.1}%
-\contentsline {subsection}{\numberline {0.2.2}Relations}{xi}{subsection.0.2.2}%
-\contentsline {subsection}{\numberline {0.2.3}Induction}{xiii}{subsection.0.2.3}%
+\contentsline {subsection}{\numberline {0.2.1}Fundamentals of Set Theory}{xi}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {0.2.2}Relations}{xii}{subsection.0.2.2}%
+\contentsline {subsection}{\numberline {0.2.3}Induction}{xiv}{subsection.0.2.3}%
 \contentsline {section}{\numberline {0.3}Topology}{xiv}{section.0.3}%
-\contentsline {subsection}{\numberline {0.3.1}Topology and Bases}{xiv}{subsection.0.3.1}%
-\contentsline {chapter}{Development}{xv}{chapter*.4}%
-\contentsline {section}{\numberline {0.4}Summer 2023}{xv}{section.0.4}%
-\contentsline {section}{\numberline {0.5}Fall 2023}{xvi}{section.0.5}%
-\contentsline {section}{\numberline {0.6}Spring 2024}{xvi}{section.0.6}%
-\contentsline {subsection}{\numberline {0.6.1}Finishing the library}{xvii}{subsection.0.6.1}%
-\contentsline {subsection}{\numberline {0.6.2}Insights as a TA}{xvii}{subsection.0.6.2}%
-\contentsline {subsection}{\numberline {0.6.3}Future Development}{xix}{subsection.0.6.3}%
+\contentsline {subsection}{\numberline {0.3.1}Topology and Bases}{xv}{subsection.0.3.1}%
+\contentsline {chapter}{Development}{xvii}{chapter*.4}%
+\contentsline {section}{\numberline {0.4}Summer 2023}{xvii}{section.0.4}%
+\contentsline {section}{\numberline {0.5}Fall 2023}{xviii}{section.0.5}%
+\contentsline {section}{\numberline {0.6}Spring 2024}{xviii}{section.0.6}%
+\contentsline {subsection}{\numberline {0.6.1}Finishing the library}{xix}{subsection.0.6.1}%
+\contentsline {subsection}{\numberline {0.6.2}Insights as a TA}{xix}{subsection.0.6.2}%
+\contentsline {subsection}{\numberline {0.6.3}Future Development}{xxi}{subsection.0.6.3}%

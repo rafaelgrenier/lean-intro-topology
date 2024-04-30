@@ -211,9 +211,9 @@ INPUT c:/texlive/2023/texmf-dist/fonts/vf/adobe/courier/pcrr7t.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrb7t.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/adobe/courier/pcrb7t.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrb8r.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm

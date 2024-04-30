@@ -1,27 +1,27 @@
 # Fdb version 4
-["bibtex Main"] 1714440917 "Main.aux" "Main.bbl" "Main" 1714441706 0
+["bibtex Main"] 1714451561 "Main.aux" "Main.bbl" "Main" 1714451667 0
   "./mybibliography.bib" 1713847857 817 eaf39531729bfc011b219b679541de78 ""
-  "Chapter1/chapter1.aux" 1714441704 1017 7c67c8b3bb359894dd5740b6596198c4 "pdflatex"
-  "Chapter2/chapter2.aux" 1714441704 2170 2006216d01592ecb112b568af858e17e "pdflatex"
-  "Chapter3/chapter3.aux" 1714441704 1808 9edaccd4cba73e8a9c7e6ed5776ddd21 "pdflatex"
-  "Main.aux" 1714441704 378 f3bd465c5c8b81ab04cd67cfa94e3352 "pdflatex"
+  "Chapter1/chapter1.aux" 1714451665 1017 7c67c8b3bb359894dd5740b6596198c4 "pdflatex"
+  "Chapter2/chapter2.aux" 1714451665 2169 2cbbc34018633053dfcfc6b0010c0573 "pdflatex"
+  "Chapter3/chapter3.aux" 1714451665 1814 d8061396e56fcf1b99317efc9885a5b8 "pdflatex"
+  "Main.aux" 1714451665 378 4e46c790f165b47b6d0f5522ec065dd3 "pdflatex"
   "c:/texlive/2023/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1703022772 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
   (generated)
   "Main.bbl"
   "Main.blg"
   (rewritten before read)
-["pdflatex"] 1714441703 "c:/Users/Rafa/lean-projects/my_project/Latex/Main.tex" "Main.pdf" "Main" 1714441706 0
-  "Chapter1/chapter1.aux" 1714441704 1017 7c67c8b3bb359894dd5740b6596198c4 "pdflatex"
+["pdflatex"] 1714451664 "c:/Users/Rafa/lean-projects/my_project/Latex/Main.tex" "Main.pdf" "Main" 1714451667 0
+  "Chapter1/chapter1.aux" 1714451665 1017 7c67c8b3bb359894dd5740b6596198c4 "pdflatex"
   "Chapter1/chapter1.tex" 1714441702 4587 95d1964295dab921fc3169e753798e97 ""
-  "Chapter2/chapter2.aux" 1714441704 2170 2006216d01592ecb112b568af858e17e "pdflatex"
-  "Chapter2/chapter2.tex" 1714344472 24892 50f0eafa67404a47a2efb1fcb54cf74f ""
-  "Chapter3/chapter3.aux" 1714441704 1808 9edaccd4cba73e8a9c7e6ed5776ddd21 "pdflatex"
+  "Chapter2/chapter2.aux" 1714451665 2169 2cbbc34018633053dfcfc6b0010c0573 "pdflatex"
+  "Chapter2/chapter2.tex" 1714451663 27609 7f35d06a7187d35477843b9364667ca5 ""
+  "Chapter3/chapter3.aux" 1714451665 1814 d8061396e56fcf1b99317efc9885a5b8 "pdflatex"
   "Chapter3/chapter3.tex" 1714347893 17166 f1c401aa25f6793bd02a3db2a7904f55 ""
-  "Main.aux" 1714441704 378 f3bd465c5c8b81ab04cd67cfa94e3352 "pdflatex"
-  "Main.bbl" 1714440918 1797 62b7778c9cf00e93de207b01fcea2a63 "bibtex Main"
-  "Main.out" 1714441704 2638 e96ce8b285d9b6543bf53241910b7d8b "pdflatex"
+  "Main.aux" 1714451665 378 4e46c790f165b47b6d0f5522ec065dd3 "pdflatex"
+  "Main.bbl" 1714451562 1797 62b7778c9cf00e93de207b01fcea2a63 "bibtex Main"
+  "Main.out" 1714451665 2638 e96ce8b285d9b6543bf53241910b7d8b "pdflatex"
   "Main.tex" 1713846538 1509 6fe0268d9950ea689d38e9a2a1996cb3 ""
-  "Main.toc" 1714441704 1448 5b09bef7c6bdbd9d8cbd2223b8701b4f "pdflatex"
+  "Main.toc" 1714451665 1453 3e99f828625d652599011cfd9db99c8d "pdflatex"
   "c:/Users/Rafa/lean-projects/my_project/Latex/Main.tex" 1713846538 1509 6fe0268d9950ea689d38e9a2a1996cb3 ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc" 1703020720 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1703019589 2900 1537cc8184ad1792082cd229ecc269f4 ""

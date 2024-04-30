@@ -87,3 +87,7 @@ no element from the domain can be mapped to that subset. Try proving the last tw
   have h2 : j ∈ S := by {sorry}
   have h3 : j ∉ S := by {sorry}
   contradiction
+
+#check Set.Mem
+
+#check Membership.mem
