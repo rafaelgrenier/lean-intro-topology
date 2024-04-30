@@ -20,6 +20,11 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{Buzzard}
+\BIBentryALTinterwordspacing
+K.~Buzzard, \emph{Formalising Mathematics}, 2022. [Online]. Available: \url{https://www.ma.imperial.ac.uk/~buzzard/xena/formalising-mathematics-2024/index.html}
+\BIBentrySTDinterwordspacing
+
 \bibitem{TPiL}
 \BIBentryALTinterwordspacing
 J.~Avigad, L.~{de Moura}, S.~Kong, and S.~Ullrich, \emph{Theorem Proving in Lean 4}, 2023. [Online]. Available: \url{https://lean-lang.org/theorem_proving_in_lean4/}
@@ -58,11 +63,6 @@ D.~Christiansen, \emph{Functional Programming in Lean}, 2023. [Online]. Availabl
 \bibitem{Macbeth}
 \BIBentryALTinterwordspacing
 H.~Macbeth, \emph{The Mechanics of Proof}, 2023. [Online]. Available: \url{https://hrmacbeth.github.io/math2001/index.html}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Buzzard}
-\BIBentryALTinterwordspacing
-K.~Buzzard, \emph{Formalising Mathematics}, 2022. [Online]. Available: \url{https://www.ma.imperial.ac.uk/~buzzard/xena/formalising-mathematics-2024/index.html}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}
