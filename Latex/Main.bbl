@@ -20,14 +20,39 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{TPiL}
+\BIBentryALTinterwordspacing
+J.~Avigad, L.~{de Moura}, S.~Kong, and S.~Ullrich, \emph{Theorem Proving in Lean 4}, 2023. [Online]. Available: \url{https://lean-lang.org/theorem_proving_in_lean4/}
+\BIBentrySTDinterwordspacing
+
 \bibitem{MIL}
 \BIBentryALTinterwordspacing
 J.~Avigad and P.~Massot, \emph{Mathematics in Lean}, 2023. [Online]. Available: \url{https://leanprover-community.github.io/mathematics_in_lean/mathematics_in_lean.pdf}
 \BIBentrySTDinterwordspacing
 
-\bibitem{TPiL}
+\bibitem{GrenierLIT}
 \BIBentryALTinterwordspacing
-J.~Avigad, L.~{de Moura}, S.~Kong, and S.~Ullrich, \emph{Theorem Proving in Lean 4}, 2023. [Online]. Available: \url{https://lean-lang.org/theorem_proving_in_lean4/}
+R.~Grenier, ``Lean-intro-topology,'' 2024. [Online]. Available: \url{https://github.com/charlespwd/project-title}
+\BIBentrySTDinterwordspacing
+
+\bibitem{RealAnalysis}
+\BIBentryALTinterwordspacing
+D.~Madden and J.~Aubrey, \emph{An Introduction to Proof through Real Analysis}.\hskip 1em plus 0.5em minus 0.4em\relax Wiley, 2017. [Online]. Available: \url{https://books.google.com/books?id=7kkzDwAAQBAJ}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Munkres}
+\BIBentryALTinterwordspacing
+J.~Munkres, \emph{Topology}, ser. Featured Titles for Topology.\hskip 1em plus 0.5em minus 0.4em\relax Prentice Hall, Incorporated, 2000. [Online]. Available: \url{https://books.google.com/books?id=XjoZAQAAIAAJ}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Uniform}
+\BIBentryALTinterwordspacing
+I.~James, \emph{Topologies and Uniformities}, ser. Springer Undergraduate Mathematics Series.\hskip 1em plus 0.5em minus 0.4em\relax Springer London, 2013. [Online]. Available: \url{https://books.google.com/books?id=k4nbBwAAQBAJ}
+\BIBentrySTDinterwordspacing
+
+\bibitem{FPiL}
+\BIBentryALTinterwordspacing
+D.~Christiansen, \emph{Functional Programming in Lean}, 2023. [Online]. Available: \url{https://lean-lang.org/functional_programming_in_lean/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Macbeth}

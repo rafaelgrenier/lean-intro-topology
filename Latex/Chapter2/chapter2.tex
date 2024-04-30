@@ -5,6 +5,13 @@
 
 \chapter{Structure}
 
+A brief preface to the deluge of information about Lean which follows:
+all of the information about how Lean works comes from the Lean resources
+\textit{Theorem Proving in Lean 4}\cite{TPiL} and 
+\textit{Mathematics in Lean}\cite{MIL}, or from my synthesis of select
+sections of the Lean library Mathlib, or from the experience
+I have gathered working with Lean for the past year.
+
 \section{Introduction to Lean and Logic}
 
 Conventionally, Propositional Logic is taught with a few basic ideas:
@@ -20,7 +27,7 @@ further into mathematics. Already by the time students learn
 about the universal quantifier, the truth table is obsolete.
 A conventional foundation for mathematics also uses sets as the 
 fundamental building block, constructing the natural numbers and so 
-forth from the axioms of Zermelo-Fraenkel set theory.
+forth from the axioms of Zermelo-Fraenkel set theory \cite{RealAnalysis}.
 
 Lean, in contrast, builds its whole world, even its logic, from types. 
 In Lean, every term has some Type, and true-or-false claims have the type 
@@ -91,7 +98,7 @@ filling out the arguments of the multivariable function one at a time, so
 which adds three to its input. Then \lean{add 3 6 : Nat} is just the 
 natural number which should be returned from 3+6, which reduces to 9.
 This technique is called ``currying'', and is critical to understanding
-the nect section.
+the next section.
 
 The code library then works through \lean{True}, \lean{False}, \lean{Not}, 
 \lean{And}, \lean{Or}, and \lean{Iff}.
@@ -196,8 +203,9 @@ their understanding of classical logic.
 \section{Set Theory}
 
 The structure of the Set Theory section of my code library is modeled after 
-\textit{Topological Spaces} by James Munkres and 
-\textit{An Introduction to Proof through Real Analysis} by Madden and Aubrey, along with
+\textit{Topology} by Munkres \cite{Munkres} and 
+\textit{An Introduction to Proof through Real Analysis} 
+by Madden and Aubrey \cite{RealAnalysis}, along with
 some influence from the undergraduate course I took at the University of Arizona
 in Formal Proof-Writing, Math 323. My code library begins with a discussion of basic
 set theory, then has subsections for Relations and Induction. 
@@ -387,8 +395,9 @@ subsection.
 \section{Topology}
 
 This chapter of the code library is modeled more explicitly after 
-\textit{Topological Spaces} by James Munkres, but also includes
-some influence from \textit{Topologies and Uniformities} by Ioan James, because 
+\textit{Topology} by Munkres, but also includes
+some influence from \textit{Topologies and Uniformities}
+by James \cite{Uniform}, because 
 the Lean library Mathlib uses \textit{Topologies and Uniformities}.
 This final section introduces the idea of a topology, a topological basis,
 and a handful of methods for constructing topologies. Unlike the primary 
@@ -422,7 +431,7 @@ simply be defined atop the \lean{TopologicalSpace} typeclass.
 
 \lean{P2\_open.lean} expands upon the definition of ``open" and ``closed" sets, 
 demonstrates that the finite union and arbitrary intersection of closed sets
-remain closed, and introduces the definitions and some properties of the 
+remain closed, and introduces the definitions asnd some properties of the 
 interior, closure, and boundary of a set.
 
 The remaining three files, \lean{P3\_product.lean}, \lean{P4\_order.lean},
