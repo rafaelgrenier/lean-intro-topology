@@ -59,21 +59,30 @@ with the assistance of Lean \cite{GrenierLIT}. The code library covers first-ord
 introductory set theory, order and equivalence relations, induction, and
 some point-set topology. 
 
-The section on first-order logic introduces propositions, 
-logical connectives, predicates, quantifiers, and just enough
-type theory to begin working with Lean. The following section on
-set theory introduces sets, set operations like union and intersection,
-functions, and cartesian products.
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \caption{My GitHub Library}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Chapter1/repo.png}
+\end{wrapfigure}
 
-The section on relations considers two kinds of relations:
+The section \lean{S1\_LeanIntro} of the first chapter \lean{C1\_LeanIntroduction} introduces propositions, 
+logical connectives, predicates, quantifiers, and just enough
+type theory to begin working with Lean. 
+
+The second chapter \lean{C2\_SetTheory} starts with the section
+\lean{S1\_Basics} which introduces sets, set operations like union and intersection,
+functions, and cartesian products.
+The section \lean{S2\_Relations} considers two kinds of relations:
 order relations and equivalence relations. The order relations
 discussed are preorder, partial order, lexicographic order, and 
 strict order. The introduction to equivalence relations transitions 
-to equivalence classes, set/type partitions, and quotients. The section
-on induction brings in weak and strong induction, as well as inductive
+to equivalence classes, set/type partitions, and quotients. 
+The section \lean{S3\_Induction}
+brings in weak and strong induction, as well as inductive
 types and recursive definitions.
 
-The final section on point-set topology introduces the definition of a 
+The third chapter \lean{C3\_Topology} has the final section \lean{S1\_Basics}
+on point-set topology which introduces the definition of a 
 topology, a topological basis, and open/closed sets. Then the section
 pivots to the order, subspace, and product topologies.
 

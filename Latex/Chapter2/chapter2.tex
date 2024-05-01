@@ -6,8 +6,8 @@
 \chapter{Structure}
 
 A brief preface to the deluge of information about Lean which follows:
-all of the information about how Lean works comes from the Lean resources
-\textit{Theorem Proving in Lean 4}\cite{TPiL} and 
+all of the information I used about how Lean works comes from the Lean 
+resources \textit{Theorem Proving in Lean 4}\cite{TPiL} and 
 \textit{Mathematics in Lean}\cite{MIL}, or from my synthesis of select
 sections of the Lean library Mathlib, or from the experience
 I have gathered working with Lean for the past year.
@@ -60,8 +60,9 @@ hypotheses already known (the function arguments and local variables) at any sta
 well as all the goals of the proofs (the type which the function should return).
 Each new tactic employed updates the tactic state, so proving a theorem with
 tactics amounts to writing tactics until all goals in the tactic state are resolved. 
-I begin by equipping students with knowledge of 
-just 3 basic tactics: \lean{intro}, \lean{apply}, and \lean{exact}.
+I begin in \lean{C1\_LeanIntroduction$\backslash$S1\_LeanIntro} 
+by equipping students with knowledge of just 3 basic tactics: 
+\lean{intro}, \lean{apply}, and \lean{exact}.
 
 The \lean{intro} tactic functions similarly to ``let" in a human language proof. 
 In some proof about Natural numbers, one might write ``let n be a natural number."
@@ -202,22 +203,23 @@ their understanding of classical logic.
 
 \section{Set Theory}
 
-The structure of the Set Theory section of my code library is modeled after 
+The structure of the Set Theory chapter of my code library is modeled after 
 \textit{Topology} by Munkres \cite{Munkres} and 
 \textit{An Introduction to Proof through Real Analysis} 
 by Madden and Aubrey \cite{RealAnalysis}, along with
 some influence from the undergraduate course I took at the University of Arizona
-in Formal Proof-Writing, Math 323. My code library begins with a discussion of basic
-set theory, then has subsections for Relations and Induction. 
+in Formal Proof-Writing in Fall 2021, Math 323. 
+The Set Theory chapter \lean{C2\_SetTheory} begins with a discussion of basic
+set theory, then has sections for Relations and Induction. 
 Induction is introduced here rather than in the opening logic section of the 
 library because it requires more type theory to understand how induction is
-implemented in Lean. As students work through my code library for set theory,
+implemented in Lean. As students work through \lean{C2\_SetTheory},
 they will also be learning bits and pieces of type theory and how type theory
 is used in Lean. 
 
 \subsection{Fundamentals of Set Theory}
 
-The first section of the Set Theory chapter in the code library is 
+The first section of the Set Theory chapter, \lean{S1\_Basics} is 
 a speedy introduction to Set Theory and a referral to Chapter 4 of
 MIL. Sets in Lean are restricted to only contain elements of the 
 same type, so \lean{Set Nat} is the type of all sets which contain
@@ -244,7 +246,7 @@ one can also think of the predicate-set correspondence as
 that between indicator function and the sets they indicate.
 
 After providing readers with enough set theory background to go read 
-MIL chapter 4, the code library provides several illustrative exercises for
+MIL chapter 4, my code library provides several illustrative exercises for
 students to complete, some of which are adapted from MIL and some of which I 
 created. One significant benefit of using Lean to learn mathematics is that
 definitions can be accessed instantly, so although MIL doesn't define 
@@ -254,13 +256,13 @@ injective or surjective, and students can decompose the terms using the
 tactic \lean{dsimp[Surjective]} or \lean{dsimp[Injective]}, which unfold
 the corresponding definitions.
 
-The set theory also covers Cartesian products and arbitrary unions, since
+\lean{S1\_Basics} also covers Cartesian products and arbitrary unions, since
 both will be critical for the topology chapter to come.
 
 \subsection{Relations}
 
 Relations are implemented in Lean as maps \lean{r : X $\to$ X $\to$ Prop}. The 
-main relations discussed in this section were order and equivalence relations,
+main relations discussed in \lean{S2\_Relations} are order and equivalence relations,
 beginning with an introduction to bundling in Lean. Many objects in 
 mathematics are characterized not just by the sets or functions themselves,
 but also by the properties they satisfy. For example, an equivalence relation
@@ -294,7 +296,7 @@ explicitly providing the instances. Lean keeps track of the most recent scoped
 definition of each particular instance, so instances don't have to be described
 with specific variable names to be used. 
 
-My section on relations investigates two main types of relations: 
+\lean{S2\_Relations} investigates two main types of relations: 
 \textbf{order relations} like preorders, partial orders, well-ordering, 
 and linear orders; and \textbf{equivalence relations}. Although there is 
 plenty of mathematics to be done with other relations, the aim of the code library is to
@@ -378,7 +380,7 @@ any multiple of three.
 Induction is a fundamental idea to Lean, since the language makes uses of
 ``inductive types." Proof by induction is also a critical idea for aspiring 
 mathematicians to learn, as it's a frequently used proof technique. This
-section of the code library first introduces readers to the mathematical notions
+section, \lean{S3\_Induction}, first introduces readers to the mathematical notions
 of strong and weak induction, then refers readers to \textit{Mathematics in Lean},
 before returning with examples of induction and recursive definitions. Chapter 
 5 Section 2 of MIL was indispensible to my understanding of inductive types in 
@@ -389,12 +391,12 @@ novicely rewriting the source material.
 The code library just builds atop the explanation in MIL, with more explicit 
 examples and exercises to illustrate and practice the use of induction, 
 inductive types, and recursive definitions. There is also a brief example
-which proves the one missing step from a proof in the previous Quotients 
+which proves the one missing step from a proof in the previous Quotient 
 subsection.
 
 \section{Topology}
 
-This chapter of the code library is modeled more explicitly after 
+The chapter \lean{C3\_Topology} is modeled more explicitly after 
 \textit{Topology} by Munkres, but also includes
 some influence from \textit{Topologies and Uniformities}
 by James \cite{Uniform}, because 
@@ -402,13 +404,13 @@ the Lean library Mathlib uses \textit{Topologies and Uniformities}.
 This final section introduces the idea of a topology, a topological basis,
 and a handful of methods for constructing topologies. Unlike the primary 
 resource for topology in Lean, Chapter 9 of \textit{Mathematics in Lean}, 
-this section places minimal focus on filters and metric spaces. In fact, 
+my library places minimal focus on filters and metric spaces. In fact, 
 this code library bears no mention of metric spaces, which ought to
 be remedied should the code library be expanded to cover more of topology.
 The framework for topology in Mathlib uses filters extensively, which
 are useful for codifying limits and continuity at a point, but I decided 
-the filter approach to topology is less intuitive than the basis 
-approach for a first introduction to an undergraduate student.
+the filter approach to topology is less intuitive to an undergraduate student
+than the basis approach for a first introduction.
 
 \subsection{Topology and Bases}
 

@@ -6,7 +6,7 @@
 \usepackage{verbatim}
 \usepackage{emptypage}
 \usepackage{courier}
-\usepackage{blindtext}
+\usepackage{wrapfig}
 \usepackage{listings}% http://ctan.org/pkg/listings
 \usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=blue,
             citecolor=blue, urlcolor=blue]{hyperref}
@@ -18,13 +18,14 @@
 
 
 % ------------------- Title and Author -----------------------------
-\title{Lean-Intro-Topology: Using Theorem Provers to Teach Formal Mathematics}
-\author{John Rafael Matteo Munoz-Grenier}
+\title{Using LEAN Theorem Prover to Teach Formal Mathematics:
+Lean-Intro-Topology Library}
+\author{Rafael Grenier}
 \begin{document}
 
 
 \frontmatter
-%\maketitle
+\maketitle
 \newpage
 {
   \vfill
@@ -33,19 +34,20 @@
   \normalsize
 
   Interactive theorem provers have become more popular in recent
-  years within the field of mathematics, since a proof validated
-  by a robust theorem prover is guaranteed to be correct. Even more
+  years within the field of mathematics, since theorem provers provide
+  guarantees of the validity of proofs. Even more
   recently, there have been pushes to use theorem provers in the
   classroom to aid in teaching formal mathematics to undergraduate 
   students. Students and instructors alike benefit from the certainty
   provided by the theorem prover, as students can develop a precise
-  logical foundation, and instructors can instantly grade their students'
-  proofs. In 2022, Dr. Kevin Buzzard pioneered a course at 
-  Imperial College London in formal mathematics
+  logical foundation and receive immediate feedback, and instructors 
+  can instantly grade their students' proofs. In 2022, Dr. Kevin Buzzard 
+  pioneered a course at Imperial College London in formal mathematics
   using the Lean theorem prover \cite{Buzzard}, and some
   other universities have followed suit with similar programs.
   Continuing in this effort to use theorem provers for teaching mathematics,
-  I have developed a library of Lean code entitled ``Lean-Intro-Topology''
+  I have developed a library of Lean code entitled 
+  ``\href{https://github.com/rafaelgrenier/lean-intro-topology/}{Lean-Intro-Topology}''
   with explanations and exercises designed to guide students through 
   formal reasoning and basic set theory, then practice using that newly
   acquired knowledge to prove some theorems in point-set topology.

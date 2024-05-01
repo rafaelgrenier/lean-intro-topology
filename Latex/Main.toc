@@ -15,4 +15,4 @@
 \contentsline {section}{\numberline {3.3}Spring 2024}{13}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Finishing the library}{14}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Insights as a TA}{15}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Future Development}{16}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Future Development}{16}{section.3.4}%
